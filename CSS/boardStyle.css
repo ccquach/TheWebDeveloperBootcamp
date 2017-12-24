@@ -1,0 +1,22 @@
+h1 {
+	text-align: center;
+}
+
+table {
+	margin: auto;
+}
+
+td {
+	width: 100px;
+	height: 100px;
+}
+
+tr td:nth-of-type(2) {
+	border-left: 2px solid gray;
+	border-right: 2px solid gray;
+}
+
+tr:nth-of-type(2) td {
+	border-top: 2px solid gray;
+	border-bottom: 2px solid gray;
+}
