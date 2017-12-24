@@ -1,7 +1,8 @@
 body {
 	font-family: Source Sans Pro;
 	border: 20px solid #BDC3C7;
-	width: 60%;
+	max-width: 700px;
+	width: 80%;
 	margin: 20px auto;
 	padding: 20px;
 }
@@ -9,22 +10,27 @@ body {
 /*Blog Title*/
 h2 {
 	color: #2C3E50;
-	font-weight: 700;
+	font-size: 2.0rem;
 	text-transform: capitalize;
 }
 
 /*Date*/
-h4 {
+.date {
 	color: #3498DB;
+	font-weight: 700;
 	text-transform: uppercase;
-	letter-spacing: 3px;
-	margin-top: 0;
+	letter-spacing: 0.2rem;
 }
 
 /*Block Quote*/
-div p:nth-of-type(1) {
-	border-left: 4px solid #BDC3C7;
+.quote {
+	border-left: 5px solid #BDC3C7;
 	padding-left: 5px;
+}
+
+/*Blog Post*/
+.post {
+	margin-bottom: 20px; 
 }
 
 hr {
