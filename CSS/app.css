@@ -1,0 +1,19 @@
+h1 {
+	color: rgba(5, 222, 45, 0.3);
+	/*border-color: purple;
+	border-width: 5px;
+	border-style: solid;*/
+
+	border: 2px solid rgb(255,100,80);
+}
+
+h4 {
+	background: rgb(255,100,80);
+}
+
+body {
+	background: pink;
+	/*background: url(http://www.vila-bela.com/wp-content/uploads/2016/04/white-washed-wood-texture-wood.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;*/
+}
