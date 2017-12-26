@@ -1,0 +1,21 @@
+body {
+	padding-top: 70px;
+}
+
+.navbar-inverse {
+	background-color: #2C3E50;
+}
+
+.jumbotron {
+	background-color: #ECF0F1;
+	color: #2C3E50;
+}
+
+
+
+/*.thumbnail img {
+	width: 100%;
+	height: 250px;
+	background-size: cover;
+	background-position: center;
+}*/
