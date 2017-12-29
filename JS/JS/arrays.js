@@ -1,7 +1,7 @@
 // *** printReverse ***
 
 function printReverse(arr) {
-	for(i = arr.length - 1; i >= 0; i--) {
+	for(var i = arr.length - 1; i >= 0; i--) {
 		console.log(arr[i]);
 	}
 }
@@ -19,7 +19,7 @@ printReverse(["a","b","c"]);
 
 function isUniform(arr) {
 	var firstElement = arr[0];
-	for(i = 1; i < arr.length; i++) {
+	for(var i = 1; i < arr.length; i++) {
 		if(arr[i] !== firstElement) {
 			return false
 		}
