@@ -1,24 +1,61 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+	<title>DOM - Manipulating Attributes</title>
+</head>
+<body>
+	<a href="http://www.google.com">I am a link to Google</a>
+	<img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png">
+
+	<script type="text/javascript">
+		var link = document.querySelector("a");
+		link.getAttribute("href");	// "http://www.google.com"
+		// change href attribute
+		link.setAttribute("href", "http://www.bing.com");
+		// <a href="http://www.bing.com">I am a link to Google</a>
+
+		var img = document.querySelector("img");
+		img.getAttribute("src");	// "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
+		// change src attribute
+		img.setAttribute("src", "http://www.free-icons-download.net/images/bing-logo-icon-65878.png");
+		// <img src="http://www.free-icons-download.net/images/bing-logo-icon-65878.png">
+	</script>
+</body>
+</html> -->
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title>DOM - Manipulating Attributes</title>
 </head>
 <body>
-	<a href="http://www.google.com">I am a link</a>
-	<img src="../img/googleLogo.png">
+	<h1>Welcome to MY DOM Demo</h1>
+	<p>Corgi mixes are <strong>super</strong> adorable</p>
+
+	<a href="http://www.google.com">LINK TO GOOGLE</a>
+
+	<ul>
+		<li>Orchids</li>
+		<li>Succulents</li>
+		<li>Tulips</li>
+	</ul>
+
+	<img src="http://cdn2-www.dogtime.com/assets/uploads/2016/08/corgi-puppy-6.jpg">
+	<img src="http://cdn3-www.dogtime.com/assets/uploads/gallery/pembroke-welsh-corgi-dog-breed-pictures/prance-8.jpg">
 
 	<script type="text/javascript">
-		var link = document.querySelector("a");
-		link.getAttribute("href");	//"http://www.google.com"
-		// change href attribute
-		link.setAttribute("href", "http://www.bing.com");
-		// <a href="http://www.bing.com">I am a link</a>
+		// Manipulate image src attribute
+		var img1 = document.getElementsByTagName("img")[0];
+		img1.getAttribute("src");
+		img1.setAttribute("src", "https://corgimixes.com/wp-content/uploads/2012/12/Corgi-Husky-Mix-8.jpg");
 
-		var img = document.querySelector("img");
-		img.getAttribute("src");	//"../img/googleLogo.png"
-		// change src attribute
-		img.setAttribute("src", "../img/bingLogo.png");
-		// <img src="../img/bingLogo.png">
+		var img2 = document.getElementsByTagName("img")[1];
+		img2.setAttribute("src", "https://corgimixes.com/wp-content/uploads/2012/12/Corgi-Husky-Mix-8.jpg");
+
+		// Manipulate anchor href attribute
+		var a = document.querySelector("a");
+		a.setAttribute("href", "http://www.bing.com");
+		a.textContent = "LINK TO BING";
 	</script>
 </body>
 </html>
