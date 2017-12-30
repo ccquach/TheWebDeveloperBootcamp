@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DOM - Manipulating Style</title>
+	<style type="text/css">
+		.big {
+			font-size: 100px;
+			color: orange;
+			border: 5px solid red;
+		}
+	</style>
+</head>
+<body>
+	<h1>Welcome to MY DOM Demo</h1>
+	<p>Corgi mixes are <strong>super</strong> adorable</p>
+	<img src="http://cdn2-www.dogtime.com/assets/uploads/2016/08/corgi-puppy-6.jpg">
+	<img src="http://cdn3-www.dogtime.com/assets/uploads/gallery/pembroke-welsh-corgi-dog-breed-pictures/prance-8.jpg">
+
+	<script type="text/javascript">
+		// var h1 = document.querySelector("h1");
+		// h1.style.color = "yellow";
+		// h1.style.border = "5px solid pink";
+
+		var p = document.querySelector("p");
+		// p.classList.add("big");
+		// p.classList.remove("big");
+		p.classList.toggle("big");
+	</script>
+</body>
+</html>
