@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DOM - Manipulating Text and Content</title>
+</head>
+<body>
+	<h1>Welcome to MY DOM Demo</h1>
+	<p>Corgi mixes are <strong>super</strong> adorable</p>
+
+	<ul>
+		<li>Orchids</li>
+		<li>Succulents</li>
+		<li>Tulips</li>
+	</ul>
+
+	<img src="http://cdn2-www.dogtime.com/assets/uploads/2016/08/corgi-puppy-6.jpg">
+	<img src="http://cdn3-www.dogtime.com/assets/uploads/gallery/pembroke-welsh-corgi-dog-breed-pictures/prance-8.jpg">
+
+	<script type="text/javascript">
+		var p = document.querySelector("p");
+		var ul = document.querySelector("ul");
+		var body = document.querySelector("body");
+
+		// *** .textContent ***
+		// p.textContent;			// Corgi mixes are super adorable
+		// ul.textContent;			// Orchids Succulents Tulips
+		// p.textContent = "Corgi mixes are really, really, super adorable";
+
+		// *** .innerHTML ***
+		// p.innerHTML;				// Corgi mixes are <strong>super</strong> adorable
+		// ul.innerHTML;			// <li>Orchids</li> <li>Succulents</li> <li>Tulips</li>
+		// ul.innerHTML = "Plants are awesome!";
+		// document.querySelector("h1").textContent = "END OF LESSON!";
+
+		// body.textContent = "<h1>Goodbye!</h1>";
+		body.innerHTML = "<h1>Goodbye!</h1>";
+	</script>
+</body>
+</html>
