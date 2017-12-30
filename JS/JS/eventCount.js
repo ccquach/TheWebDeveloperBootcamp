@@ -13,7 +13,11 @@ console.log(total);
 // var total = 0;
 // var headerTotal = 0;
 
-// count headers (24)
+// paragraphs (23)
+// var ps = document.querySelectorAll("h3 + p a");
+// total += ps.length;
+
+// METHOD 1: count headers (24)
 // var rows = document.querySelectorAll("tr");
 // for(var i = 0; i < rows.length; i++) {
 // 	var header = rows[i].querySelector("th");
@@ -24,7 +28,7 @@ console.log(total);
 // // exclude headers
 // total += rows.length - headerTotal;
 
-// table rows
+// METHOD 2: table rows
 // var rows = document.querySelectorAll("tr");
 // for(var i = 0; i < rows.length; i++) {
 // 	var event = rows[i].querySelector("td");
@@ -33,9 +37,5 @@ console.log(total);
 // 		total++;
 // 	}
 // }
-
-// paragraphs (23)
-// var ps = document.querySelectorAll("h3 + p a");
-// total += ps.length;
 
 // console.log(total);
