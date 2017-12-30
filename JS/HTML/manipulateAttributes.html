@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DOM - Manipulating Attributes</title>
+</head>
+<body>
+	<a href="http://www.google.com">I am a link</a>
+	<img src="../img/googleLogo.png">
+
+	<script type="text/javascript">
+		var link = document.querySelector("a");
+		link.getAttribute("href");	//"http://www.google.com"
+		// change href attribute
+		link.setAttribute("href", "http://www.bing.com");
+		// <a href="http://www.bing.com">I am a link</a>
+
+		var img = document.querySelector("img");
+		img.getAttribute("src");	//"../img/googleLogo.png"
+		// change src attribute
+		img.setAttribute("src", "../img/bingLogo.png");
+		// <img src="../img/bingLogo.png">
+	</script>
+</body>
+</html>
