@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DOM - Event Listener</title>
+</head>
+<body>
+	<h1>Welcome to MY DOM Demo</h1>
+	<p>Corgi mixes are <strong>super</strong> adorable</p>
+
+	<a href="http://www.google.com">LINK TO GOOGLE</a>
+
+	<ul>
+		<li>Orchids</li>
+		<li>Succulents</li>
+		<li>Tulips</li>
+	</ul>
+
+	<img src="http://cdn2-www.dogtime.com/assets/uploads/2016/08/corgi-puppy-6.jpg">
+	<img src="http://cdn3-www.dogtime.com/assets/uploads/gallery/pembroke-welsh-corgi-dog-breed-pictures/prance-8.jpg">
+
+	<script type="text/javascript">
+		// add event listener to h1
+		var h1 = document.querySelector("h1");
+		h1.addEventListener("click", function() {
+			alert("h1 was clicked");
+		});
+
+		// event listener added to parent ul is triggered when event occurs on any child li
+		var ul = document.querySelector("ul");
+		ul.addEventListener("click", function() {
+			console.log("you clicked the ul");
+		});
+
+		// add event listener to each list item
+		var lis = document.querySelectorAll("li");
+		for(var i = 0; i < lis.length; i++) {
+			lis[i].addEventListener("click", function() {
+				this.style.color = "pink";
+			});
+		}
+
+		// pass named function to addEventListener method
+		h1.addEventListener("mouseenter", changeText);
+
+		function changeText() {
+			h1.textContent = "Someone hovered over the h1!";
+		}
+	</script>
+</body>
+</html>
