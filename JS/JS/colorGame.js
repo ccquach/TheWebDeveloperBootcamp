@@ -45,8 +45,12 @@ resetButton.addEventListener("click", function() {
 	for(var i = 0; i < squares.length; i++) {
 		squares[i].style.backgroundColor = colors[i];
 	}
-	// reset h1 background
+	//reset h1 background
 	h1.style.backgroundColor = "steelblue";
+	//reset message display
+	messageDisplay.textContent = "";
+	//reset Play Again to New Colors button text
+	this.textContent = "New Colors"
 });
 
 colorDisplay.textContent = pickedColor;
