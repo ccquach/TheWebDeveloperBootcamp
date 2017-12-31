@@ -8,3 +8,10 @@ $('button').click(function() {
 	var text = $(this).text();
 	console.log("you clicked " + text);
 });
+
+$('input[type="text"]').keypress(function(event) {
+	// console.log(event);
+	if(event.which === 13) {
+		alert("you hit enter");
+	}
+});
