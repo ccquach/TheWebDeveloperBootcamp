@@ -24,6 +24,14 @@ $('img').attr("src", "https://c1.staticflickr.com/2/1445/23931141974_a71b3f5483_
 // ********** .val() **********
 
 // $('input').val();
-$('input').val("Rusty Steele");
-$('input').val("");
-$('select').val();
+// $('input').val("Rusty Steele");
+// $('input').val("");
+// $('select').val();
+
+// ********** .addClass(), .removeClass(), .toggleClass() **********
+// $('h1').addClass("correct");
+// $('h1').removeClass("correct");
+$('li').addClass("correct");
+$('li').toggleClass("correct");
+$('li').first().toggleClass("done");
+$('li').toggleClass("done");
