@@ -13,3 +13,4 @@
 
 * Interact with Node Console
 * Run a file with Node
+	* node <filename>
