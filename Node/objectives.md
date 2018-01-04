@@ -14,3 +14,20 @@
 * Interact with Node Console
 * Run a file with Node
 	* node <filename>
+
+
+
+#Intro to NPM
+* Define NPM
+	* Package (Library) manager for JavaScript
+* Explain why NPM is awesome
+	* Easy to use: node install [package_name]
+	* Centralized repository of 200k+ packages
+* Intro the package we will end up using
+	* express
+	* mongoose
+	* morgan
+	* ejs
+	* bodyparser
+	* cookieparser
+	* passport
