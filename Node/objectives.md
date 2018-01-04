@@ -59,3 +59,16 @@
 		* Express is lightweight: doesn't do much for you (flexible)
 			* Less is hidden from you, meaning you have to understand
 			  how things work in order to get things done
+
+
+
+#NPM Init and Package.json
+
+* Use the '--save' flag to install packages
+	* Installs package and adds package name and version to dependencies 
+	  section of package.json
+* Explain what the package.json file does
+	* Holds metadata relevant to specific project (e.g. dependencies)
+* Use 'npm init' to create a new package.json
+	* Allows us to add dependencies metadata to a project using --save 
+	  flag when installing packages
