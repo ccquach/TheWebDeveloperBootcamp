@@ -18,6 +18,7 @@
 
 
 #Intro to NPM
+
 * Define NPM
 	* Package (Library) manager for JavaScript
 * Explain why NPM is awesome
@@ -31,3 +32,8 @@
 	* bodyparser
 	* cookieparser
 	* passport
+
+#Installing and Using Packages
+
+* Use 'npm install' to install a package
+* Use 'require()' to include a package
