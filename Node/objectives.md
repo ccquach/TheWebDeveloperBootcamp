@@ -72,3 +72,11 @@
 * Use 'npm init' to create a new package.json
 	* Allows us to add dependencies metadata to a project using --save 
 	  flag when installing packages
+
+
+
+#More Routing!
+
+* Show the * route matcher
+* Write routes containing route parameters
+* Discuss route order
