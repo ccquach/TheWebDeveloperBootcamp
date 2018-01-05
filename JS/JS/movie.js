@@ -1,7 +1,7 @@
 var movies = [];
 
 movies[0] = {
-	title: "It Happend One Night",
+	title: "It Happened One Night",
 	rating: 4.5,
 	hasWatched: false
 };
