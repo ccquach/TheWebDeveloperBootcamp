@@ -1,6 +1,7 @@
 #Intro to Node
 
 * What is Node?
+	* JavaScript runtime built on Chromes V8 JavaScript engine
 	* Allows us to run JavaScript on server side
 * Why are we learning it?
 	* It's popular!
