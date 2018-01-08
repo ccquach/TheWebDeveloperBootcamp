@@ -20,5 +20,11 @@ Each Campground has:
 * Add basic unstyled form
 
 #Style the Campgrounds Page
+
 * Add a better header/footer
 * Make campgrounds display in a grid
+
+#Style the Navbar and Form
+
+* Add a navbar to all templates
+* Style the new campground form
