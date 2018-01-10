@@ -15,20 +15,20 @@ var campgroundSchema = new mongoose.Schema({
 });
 var Campground = mongoose.model("Campground", campgroundSchema);
 
-Campground.create(
-{
-	name: "Granite Hill",
-	image: "https://farm2.staticflickr.com/1363/1342367857_2fd12531e7.jpg",
-	description: "This is a huge granite hill, no bathrooms. No water. Beautifull granite!"
+// Campground.create(
+// {
+// 	name: "Granite Hill",
+// 	image: "https://farm2.staticflickr.com/1363/1342367857_2fd12531e7.jpg",
+// 	description: "This is a huge granite hill, no bathrooms. No water. Beautifull granite!"
 
-}, function(err, campground) {
-	if(err) {
-		console.log(err);
-	} else {
-		console.log("NEWLY CREATED CAMPGROUND: ");
-		console.log(campground);
-	}
-});
+// }, function(err, campground) {
+// 	if(err) {
+// 		console.log(err);
+// 	} else {
+// 		console.log("NEWLY CREATED CAMPGROUND: ");
+// 		console.log(campground);
+// 	}
+// });
 
 app.get("/", function(req, res) {
 	res.render("landing");
@@ -41,7 +41,7 @@ app.get("/campgrounds", function(req, res) {
 		if(err) {
 			console.log(err);
 		} else {
-			res.render("campgrounds", { campgrounds: allCampgrounds });
+			res.render("index", { campgrounds: allCampgrounds });
 		}
 	});
 });
@@ -71,10 +71,17 @@ app.get("/campgrounds/new", function(req, res) {
 	res.render("new");
 });
 
+//SHOW - shows more info about one campground
 app.get("/campgrounds/:id", function(req, res) {
 	//find the campground with provided ID
-	//render show template with that campground
-	res.send("this will be the show page one day");
+	Campground.findById(req.params.id, function(err, foundCampground) {
+		if(err) {
+			console.log(err);
+		} else {
+			//render show template with that campground
+			res.render("show", { campground: foundCampground });
+		}
+	});
 });
 
 app.listen(3000, function() {
