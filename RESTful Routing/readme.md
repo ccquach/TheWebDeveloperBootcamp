@@ -15,3 +15,9 @@ CREATE
 READ	/allBlogs
 UPDATE	/updateBlog/:id
 DELETE	/destroyBlog/:id
+
+#Blog Index
+* Setup the Blog App
+* Create the Blog model
+* Add Index route and template
+* Add Simple Nav Bar
