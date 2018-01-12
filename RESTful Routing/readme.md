@@ -21,3 +21,8 @@ DELETE	/destroyBlog/:id
 * Create the Blog model
 * Add Index route and template
 * Add Simple Nav Bar
+
+#Basic Layout
+* Add Header and Footer Partials
+* Include Semantic UI
+* Add Simple Nav
