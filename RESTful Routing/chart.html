@@ -21,6 +21,7 @@
 							<th scope="col">Path</th>
 							<th scope="col">HTTP Verb</th>
 							<th scope="col">Purpose</th>
+							<th scope="col">Mongoose Method</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -29,42 +30,49 @@
 							<td>/dogs</td>
 							<td>GET</td>
 							<td>List all dogs</td>
+							<td>Dog.find()</td>
 						</tr>
 						<tr class="success">
 							<td>New</td>
 							<td>/dogs/new</td>
 							<td>GET</td>
 							<td>Show new dog form</td>
+							<td>N/A</td>
 						</tr>
 						<tr class="success">
 							<td>Create</td>
 							<td>/dogs</td>
 							<td>POST</td>
 							<td>Create a new dog, then redirect somewhere</td>
+							<td>Dog.create()</td>
 						</tr>
 						<tr class="info">
 							<td>Show</td>
 							<td>/dogs/:id</td>
 							<td>GET</td>
 							<td>Show info about one specific dog</td>
+							<td>Dog.findById()</td>
 						</tr>
 						<tr class="warning">
 							<td>Edit</td>
 							<td>/dogs/:id/edit</td>
 							<td>GET</td>
 							<td>Show edit form for one dog</td>
+							<td>Dog.findById()</td>
 						</tr>
 						<tr class="warning">
 							<td>Update</td>
 							<td>/dogs/:id</td>
 							<td>PUT</td>
 							<td>Update a particular dog, then redirect somewhere</td>
+							<td>Dog.findByIdAndUpdate()</td>
 						</tr>
 						<tr class="danger">
 							<td>Destroy</td>
 							<td>/dogs/:id</td>
 							<td>DELETE</td>
 							<td>Delete a particuclar dog, then redirect somewhere</td>
+							<td>Dog.findByIdAndRemove()</td>
 						</tr>
 					</tbody>
 				</table>

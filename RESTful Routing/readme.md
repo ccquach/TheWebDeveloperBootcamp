@@ -1,6 +1,6 @@
 #RESTful Routing
 
-##Introduction
+#Introduction
 * Define REST and explay WHY it matters
 	* A pattern for defining routes
 	* Conventional and reliable (user knows what to expect from RESTful architecture)
@@ -45,3 +45,12 @@ DELETE	/destroyBlog/:id
 * Add Update Route
 * Add Update Form
 * Add Method-Override
+
+#DESTROY
+* Add Destroy Route
+* Add Edit and Destroy Links
+
+#Final Updates
+* Sanitize blog body
+* Style Index
+* Updated REST Table
