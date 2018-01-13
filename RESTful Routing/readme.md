@@ -38,3 +38,10 @@ DELETE	/destroyBlog/:id
 * Add Show template
 * Add links to show page
 * Style show template
+
+#Edit/Update
+* Add Edit Route
+* Add Edit Form
+* Add Update Route
+* Add Update Form
+* Add Method-Override
