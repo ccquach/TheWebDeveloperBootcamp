@@ -1,10 +1,22 @@
 <h1>Worklist</h1>
 
-<% accounts.forEach(function(account) { %>
-	<div>
-		<h2><%= account.lastName %>, <%= account.firstName %></h2>
-		<h3><%= account.number %></h3>
-		<p>$<%= account.currentBalance.toFixed(2) %></p>
-		<p><%= account.created.toDateString() %></p>
-	</div>
-<% }) %>
+<table>
+	<thead>
+		<tr>
+			<th>Account #</th>
+			<th>Patient Name</th>
+			<th>Current Balance</th>
+			<th>Date Added</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% accounts.forEach(function(account) { %>
+			<tr>
+				<td><%= account.number %></td>
+				<td><%= account.lastName %>, <%= account.firstName %></td>
+				<td>$<%= account.currentBalance.toFixed(2) %></td>
+				<td><%= account.created.toDateString() %></td>
+			</tr>
+		<% }) %>
+	</tbody>
+</table>
