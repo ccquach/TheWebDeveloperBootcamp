@@ -1,3 +1,7 @@
-i.icon {
+.header i.icon {
 	font-size: 2em;	
+}
+
+.container.main {
+	margin: 5.0em 7.0em;
 }
