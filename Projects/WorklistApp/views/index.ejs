@@ -1,0 +1,10 @@
+<h1>Worklist</h1>
+
+<% accounts.forEach(function(account) { %>
+	<div>
+		<h2><%= account.lastName %>, <%= account.firstName %></h2>
+		<h3><%= account.number %></h3>
+		<p>$<%= account.currentBalance.toFixed(2) %></p>
+		<p><%= account.created.toDateString() %></p>
+	</div>
+<% }) %>

@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // MONGOOSE/MODEL CONFIG
 var accountSchema = mongoose.Schema({
-	account: String,
+	number: String,
 	firstName: String,
 	lastName: String,
 	currentBalance: Number,
@@ -19,11 +19,20 @@ var accountSchema = mongoose.Schema({
 });
 var Account = mongoose.model("Account", accountSchema);
 
-Account.create({
-	account: "12345678",
-	firstName: "John",
-	lastName: "Doe",
-	currentBalance: 1234.56
+// RESTful ROUTES
+app.get("/", function(req, res) {
+	res.redirect("/accounts");
+});
+
+// INDEX ROUTE
+app.get("/accounts", function(req, res) {
+	Account.find({}, function(err, accounts) {
+		if(err) {
+			console.log(err);
+		} else {
+			res.render("index", { accounts: accounts });
+		}
+	});
 });
 
 app.listen(3000, function() {
