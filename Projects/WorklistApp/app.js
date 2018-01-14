@@ -15,6 +15,7 @@ var accountSchema = mongoose.Schema({
 	firstName: String,
 	lastName: String,
 	currentBalance: Number,
+	comment: String,
 	created: { type: Date, default: Date.now }
 });
 var Account = mongoose.model("Account", accountSchema);
@@ -31,6 +32,22 @@ app.get("/accounts", function(req, res) {
 			console.log(err);
 		} else {
 			res.render("index", { accounts: accounts });
+		}
+	});
+});
+
+// NEW ROUTE
+app.get("/accounts/new", function(req, res) {
+	res.render("new");
+});
+
+// CREATE ROUTE
+app.post("/accounts", function(req, res) {
+	Account.create(req.body.account, function(err, newAccount) {
+		if(err) {
+			res.render("new");
+		} else {
+			res.redirect("/accounts");
 		}
 	});
 });

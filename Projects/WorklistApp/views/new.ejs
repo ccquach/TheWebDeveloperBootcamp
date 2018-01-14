@@ -1,0 +1,35 @@
+<% include ./partials/header %>
+
+<div class="ui main text container segment">
+	<div class="ui huge header">New Account</div>
+	<form class="ui form" action="/accounts" method="POST">
+		<h4 class="ui dividing header">Patient Information</h4>
+		<div class="field">
+			<label>Account #</label>
+			<input autofocus="true" type="text" name="account[number]" placeholder="########" maxlength="8" required>
+		</div>
+		<div class="field">
+			<label>Patient Name</label>
+			<div class="two fields">
+				<div class="field">
+					<input type="text" name="account[firstName]" placeholder="First Name" required>
+				</div>
+				<div class="field">
+					<input type="text" name="account[lastName]" placeholder="Last Name" required>
+				</div>
+			</div>
+		</div>
+		<div class="field">
+			<label>Current Balance</label>
+			<input type="number" step="0.01" name="account[currentBalance]" placeholder="0.00" required>
+		</div>
+		<h4 class="ui dividing header">Notes</h4>
+		<div class="field">
+			<label>Comments</label>
+			<textarea name="account[comment]"></textarea>
+		</div>
+		<input class="ui button" type="submit">
+	</form>
+</div>
+
+<% include ./partials/footer %>
