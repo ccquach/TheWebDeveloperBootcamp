@@ -17,7 +17,7 @@
 					<td><%= account.number %></td>
 					<td><%= account.lastName %>, <%= account.firstName %></td>
 					<td>$<%= account.currentBalance.toFixed(2) %></td>
-					<td><%= account.created.toDateString() %></td>
+					<td><%= moment(account.created).format("M/D/YYYY") %></td>
 				</tr>
 			<% }) %>
 		</tbody>

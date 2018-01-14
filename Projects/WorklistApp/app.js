@@ -1,6 +1,7 @@
 var bodyParser 	= require("body-parser"),
 	mongoose 	= require("mongoose"),
 	express 	= require("express"),
+	moment		= require("moment"),
 	app 		= express();
 
 // APP CONFIG
@@ -8,6 +9,7 @@ mongoose.connect("mongodb://localhost/worklist_app", { useMongoClient: true });
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.locals.moment = moment;
 
 // MONGOOSE/MODEL CONFIG
 var accountSchema = mongoose.Schema({
