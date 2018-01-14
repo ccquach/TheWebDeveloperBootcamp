@@ -1,16 +1,19 @@
 <% include ./partials/header %>
 
-<div class="ui main text container">
+<div class="ui main container">
 	<!-- HEADER -->
 	<h1 class="ui center aligned icon header">
 		<i class="circular address card outline icon"></i>
 	</h1>
 
+	<!-- SECONDARY MENU -->
+	<div class="ui secondary pointing menu">
+		<a class="active item" href="#">Patient Info</a>
+		<a class="item" href="#">Insurance</a>
+		<a class="item" href="#">Comments</a>
+	</div>
+
 	<!-- PATIENT DETAILS -->
-	<h4 class="ui horizontal divider header">
-		<i class="user icon"></i>
-		Patient Information
-	</h4>
 	<table class="ui definition table">
 		<tbody>
 			<tr>
@@ -27,11 +30,8 @@
 			</tr>
 		</tbody>
 	</table>
+	
 	<!-- COMMENTS -->
-	<h4 class="ui horizontal divider header">
-		<i class="sticky note icon"></i>
-		Comments
-	</h4>
 	<div class="ui segment">
 		<p><%= account.comment %></p>
 	</div>
