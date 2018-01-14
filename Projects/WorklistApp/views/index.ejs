@@ -1,9 +1,35 @@
 <% include ./partials/header %>
 
 <div class="ui main container">
+	<!-- HEADER -->
 	<h1 class="ui center aligned icon header">
 		<i class="circular browser icon"></i>
 	</h1>
+
+	<!-- SECONDARY MENU -->
+	<div class="ui secondary menu">
+		<div class="right menu">
+			<!-- ADD ACCOUNT -->
+			<div class="item">
+				<a class="add user icon button" data-tooltip="Add Account" data-position="top right" href="/accounts/new">
+					<i class="add user icon"></i>
+				</a>
+			</div>
+
+			<!-- SEARCH BAR -->
+			<div class="right menu">
+				<div class="ui item">
+					<div class="ui icon input">
+						<input class="prompt" type="text" name="" placeholder="Search Account...">
+						<i class="search link icon"></i>
+					</div>
+					<div class="results"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- TABLE -->
 	<table class="ui fixed single line selectable sortable celled black table">
 		<thead>
 			<tr>

@@ -5,8 +5,13 @@ input::-webkit-inner-spin-button {
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
-.menu i.icon {
+.main.menu i.icon,
+.secondary.menu i.icon {
 	font-size: 1.5em;	
+}
+
+.menu i.search.icon {
+	font-size: 1.0em;
 }
 
 .container.main {
