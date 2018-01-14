@@ -3,7 +3,7 @@
 <div class="ui main container">
 	<!-- HEADER -->
 	<h1 class="ui center aligned icon header">
-		<i class="circular address card outline icon"></i>
+		<i class="circular id card outline icon"></i>
 	</h1>
 
 	<!-- SECONDARY MENU -->
@@ -15,13 +15,13 @@
 		<div class="right menu">
 			<div class="item">
 				<a data-tooltip="Edit" data-position="top center" href="/accounts/<%= account._id %>/edit">
-					<i class="edit icon"></i>
+					<i class="edit link icon"></i>
 				</a>
 			</div>
 			<div class="item">
 				<form action="/accounts/<%= account._id %>?_method=DELETE" method="POST">
 					<button id="delete" data-tooltip="Delete" data-position="top center">
-						<i class="trash icon"></i>
+						<i class="trash link icon"></i>
 					</button>
 				</form>
 			</div>
