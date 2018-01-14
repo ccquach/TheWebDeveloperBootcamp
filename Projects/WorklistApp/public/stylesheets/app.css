@@ -5,10 +5,10 @@ input::-webkit-inner-spin-button {
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
-.header i.icon {
-	font-size: 2em;	
+.menu i.icon {
+	font-size: 1.5em;	
 }
 
 .container.main {
-	margin: 5.0em 7.0em;
+	margin: 7.0em;
 }

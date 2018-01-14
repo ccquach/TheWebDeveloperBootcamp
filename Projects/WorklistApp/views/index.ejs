@@ -1,7 +1,9 @@
 <% include ./partials/header %>
 
 <div class="ui container main">
-	<h1>Worklist</h1>
+	<h1 class="ui center aligned icon header">
+		<i class="circular browser icon"></i>
+	</h1>
 	<table class="ui fixed single line selectable sortable celled black table">
 		<thead>
 			<tr>
@@ -14,7 +16,7 @@
 		<tbody>
 			<% accounts.forEach(function(account) { %>
 				<tr>
-					<td><%= account.number %></td>
+					<td><a href="/accounts/<%= account._id %>"><%= account.number %></a></td>
 					<td><%= account.lastName %>, <%= account.firstName %></td>
 					<td>$<%= account.currentBalance.toFixed(2) %></td>
 					<td><%= moment(account.created).format("M/D/YYYY") %></td>

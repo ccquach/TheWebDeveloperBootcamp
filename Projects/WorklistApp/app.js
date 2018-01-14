@@ -54,6 +54,17 @@ app.post("/accounts", function(req, res) {
 	});
 });
 
+// SHOW ROUTE
+app.get("/accounts/:id", function(req, res) {
+	Account.findById(req.params.id, function(err, foundAccount) {
+		if(err) {
+			res.redirect("/accounts");
+		} else {
+			res.render("show", { account: foundAccount });
+		}
+	});
+});
+
 app.listen(3000, function() {
 	console.log("Serving Worklist Application on port 3000");
 });
