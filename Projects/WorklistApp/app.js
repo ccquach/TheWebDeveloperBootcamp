@@ -1,14 +1,16 @@
-var bodyParser 	= require("body-parser"),
-	mongoose 	= require("mongoose"),
-	express 	= require("express"),
-	moment		= require("moment"),
-	app 		= express();
+var methodOverride 	= require("method-override"),
+	bodyParser 		= require("body-parser"),
+	mongoose 		= require("mongoose"),
+	express 		= require("express"),
+	moment			= require("moment"),
+	app 			= express();
 
 // APP CONFIG
 mongoose.connect("mongodb://localhost/worklist_app", { useMongoClient: true });
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
 app.locals.moment = moment;
 
 // MONGOOSE/MODEL CONFIG
@@ -61,6 +63,28 @@ app.get("/accounts/:id", function(req, res) {
 			res.redirect("/accounts");
 		} else {
 			res.render("show", { account: foundAccount });
+		}
+	});
+});
+
+// EDIT ROUTE
+app.get("/accounts/:id/edit", function(req, res) {
+	Account.findById(req.params.id, function(err, foundAccount) {
+		if(err) {
+			res.redirect("/accounts");
+		} else {
+			res.render("edit", { account: foundAccount });
+		}
+	});
+});
+
+// UPDATE ROUTE
+app.put("/accounts/:id", function(req, res) {
+	Account.findByIdAndUpdate(req.params.id, req.body.account, function(err, updatedAccount) {
+		if(err) {
+			res.redirect("/accounts");
+		} else {
+			res.redirect("/accounts/" + req.params.id);
 		}
 	});
 });
