@@ -89,6 +89,17 @@ app.put("/accounts/:id", function(req, res) {
 	});
 });
 
+// DELETE ROUTE
+app.delete("/accounts/:id", function(req, res) {
+	Account.findByIdAndRemove(req.params.id, function(err) {
+		if(err) {
+			res.redirect("/accounts");
+		} else {
+			res.redirect("/accounts");
+		}
+	});
+});
+
 app.listen(3000, function() {
 	console.log("Serving Worklist Application on port 3000");
 });

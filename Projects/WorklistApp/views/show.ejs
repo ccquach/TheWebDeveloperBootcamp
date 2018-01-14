@@ -11,11 +11,19 @@
 		<a class="active item" href="#">Patient Info</a>
 		<a class="item" href="#">Insurance</a>
 		<a class="item" href="#">Comments</a>
+		<!-- SETTINGS -->
 		<div class="right menu">
 			<div class="item">
-				<a class="edit popup icon button" data-tooltip="Edit Account" data-position="top right" href="/accounts/<%= account._id %>/edit">
+				<a data-tooltip="Edit" data-position="top center" href="/accounts/<%= account._id %>/edit">
 					<i class="edit icon"></i>
 				</a>
+			</div>
+			<div class="item">
+				<form action="/accounts/<%= account._id %>?_method=DELETE" method="POST">
+					<button id="delete" data-tooltip="Delete" data-position="top center">
+						<i class="trash icon"></i>
+					</button>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -42,5 +50,6 @@
 	<div class="ui segment">
 		<p><%= account.comment %></p>
 	</div>
+</div>
 
 <% include ./partials/footer %>
