@@ -7,8 +7,9 @@ var expressSanitizer 	= require("express-sanitizer"),
 	app 				= express();
 
 // MONGOOSE MODELS
-var Account = require("./models/account");
-var Comment = require("./models/comment");
+var Account = require("./models/account"),
+	Comment = require("./models/comment"),
+	User 	= require("./models/user");
 
 // APP CONFIG
 mongoose.connect("mongodb://127.0.0.1/worklist_app", { useMongoClient: true });
