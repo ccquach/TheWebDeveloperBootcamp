@@ -10,6 +10,10 @@ input::-webkit-inner-spin-button {
 	font-size: 1.5em;	
 }
 
+.ui.secondary.pointing.menu .active.item {
+	border-color: rgb(33, 186, 69);
+}
+
 .menu i.search.icon {
 	font-size: 1.0em;
 }
