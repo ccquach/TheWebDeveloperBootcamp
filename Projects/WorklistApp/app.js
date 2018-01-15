@@ -1,15 +1,17 @@
-var methodOverride 	= require("method-override"),
-	bodyParser 		= require("body-parser"),
-	mongoose 		= require("mongoose"),
-	express 		= require("express"),
-	moment			= require("moment"),
-	app 			= express();
+var expressSanitizer 	= require("express-sanitizer"),
+	methodOverride 		= require("method-override"),
+	bodyParser 			= require("body-parser"),
+	mongoose 			= require("mongoose"),
+	express 			= require("express"),
+	moment				= require("moment"),
+	app 				= express();
 
 // APP CONFIG
 mongoose.connect("mongodb://localhost/worklist_app", { useMongoClient: true });
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(expressSanitizer());
 app.use(methodOverride("_method"));
 app.locals.moment = moment;
 
@@ -47,6 +49,7 @@ app.get("/accounts/new", function(req, res) {
 
 // CREATE ROUTE
 app.post("/accounts", function(req, res) {
+	req.body.account.comment = req.sanitize(req.body.account.comment);
 	Account.create(req.body.account, function(err, newAccount) {
 		if(err) {
 			res.render("new");
@@ -80,6 +83,7 @@ app.get("/accounts/:id/edit", function(req, res) {
 
 // UPDATE ROUTE
 app.put("/accounts/:id", function(req, res) {
+	req.body.account.comment = req.sanitize(req.body.account.comment);
 	Account.findByIdAndUpdate(req.params.id, req.body.account, function(err, updatedAccount) {
 		if(err) {
 			res.redirect("/accounts");
