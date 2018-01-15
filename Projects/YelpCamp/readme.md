@@ -49,3 +49,11 @@ SHOW    /dogs/:id   GET		Show info about one dog
 * Create a models directory
 * Use module.exports
 * Require everything correctly!
+
+#Add Seeds File
+* Add a seed.js file
+* Run the seeds file every time the server starts
+
+#Add the Comment Model
+* Make our errors go away
+* Display comments on campground show page
