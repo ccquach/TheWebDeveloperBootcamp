@@ -6,6 +6,10 @@ var expressSanitizer 	= require("express-sanitizer"),
 	moment				= require("moment"),
 	app 				= express();
 
+// MONGOOSE MODELS
+var Account = require("./models/account");
+var Comment = require("./models/comment");
+
 // APP CONFIG
 mongoose.connect("mongodb://127.0.0.1/worklist_app", { useMongoClient: true });
 app.set("view engine", "ejs");
@@ -14,17 +18,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressSanitizer());
 app.use(methodOverride("_method"));
 app.locals.moment = moment;
-
-// MONGOOSE/MODEL CONFIG
-var accountSchema = mongoose.Schema({
-	number: String,
-	firstName: String,
-	lastName: String,
-	currentBalance: Number,
-	comment: String,
-	created: { type: Date, default: Date.now }
-});
-var Account = mongoose.model("Account", accountSchema);
 
 // RESTful ROUTES
 app.get("/", function(req, res) {
