@@ -7,7 +7,7 @@ var expressSanitizer 	= require("express-sanitizer"),
 	app 				= express();
 
 // APP CONFIG
-mongoose.connect("mongodb://localhost/worklist_app", { useMongoClient: true });
+mongoose.connect("mongodb://127.0.0.1/worklist_app", { useMongoClient: true });
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));

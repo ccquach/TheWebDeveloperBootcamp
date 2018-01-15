@@ -1,0 +1,14 @@
+{
+  "name": "associations",
+  "version": "1.0.0",
+  "description": "* Define associations\r * Discuss one:one, one:many, and many:many relationships",
+  "main": "embed.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "cynthia.quach",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^4.13.9"
+  }
+}
