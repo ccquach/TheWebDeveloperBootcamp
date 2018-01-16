@@ -69,3 +69,7 @@ CREATE 	/campgrounds/:id/comments		POST
 * Discuss nested routes
 * Add the comment new and create route
 * Add the new comment form
+
+#Style Show Page
+* Add sidebar to show page
+* Display comments nicely
