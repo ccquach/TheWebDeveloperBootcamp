@@ -3,6 +3,7 @@ var expressSanitizer 	= require("express-sanitizer"),
 	bodyParser 			= require("body-parser"),
 	mongoose 			= require("mongoose"),
 	express 			= require("express"),
+	seedDB				= require("./seeds"),
 	moment				= require("moment"),
 	app 				= express();
 
@@ -12,13 +13,14 @@ var Account = require("./models/account"),
 	User 	= require("./models/user");
 
 // APP CONFIG
-mongoose.connect("mongodb://127.0.0.1/worklist_app", { useMongoClient: true });
+mongoose.connect("mongodb://127.0.0.1/worklist_app");
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressSanitizer());
 app.use(methodOverride("_method"));
 app.locals.moment = moment;
+seedDB();
 
 // RESTful ROUTES
 app.get("/", function(req, res) {
