@@ -6,12 +6,8 @@
 		<i class="circular id card outline icon"></i>
 	</h1>
 
-	<!-- SECONDARY MENU -->
-	<div class="ui secondary pointing menu">
-		<a class="active item" href="#">Patient Info</a>
-		<a class="item" href="#">Insurance</a>
-		<a class="item" href="#">Comments</a>
-		<!-- SETTINGS -->
+	<!-- ACCOUNT SETTINGS -->
+	<div class="ui secondary menu">
 		<div class="right menu">
 			<div class="item">
 				<a data-tooltip="Edit" data-position="top center" href="/accounts/<%= account._id %>/edit">
@@ -28,38 +24,54 @@
 		</div>
 	</div>
 
-	<!-- PATIENT DETAILS -->
-	<table class="ui definition table">
-		<tbody>
-			<tr>
-				<td class="four wide column">Account #</td>
-				<td><%= account.number %></td>
-			</tr>
-			<tr>
-				<td>Patient Name</td>
-				<td><%= account.lastName %>, <%= account.firstName %></td>
-			</tr>
-			<tr>
-				<td>Current Balance</td>
-				<td>$<%= account.currentBalance.toFixed(2) %></td>
-			</tr>
-		</tbody>
-	</table>
-	
-	<!-- COMMENTS -->
-	<div class="ui segment">
-		<!-- NEW COMMENT BUTTON -->
-		<a class="ui right floated labeled icon button" href="/accounts/<%= account._id %>/comments/new">
-			<i class="comment outline icon"></i>
-			Comment
-		</a>
+	<div class="ui grid">
+		<div class="three wide column">
+			<!-- SIDEBAR PAGE NAV -->
+			<div class="ui secondary vertical pointing menu">
+				<a class="active item" href="#">Patient Info</a>
+				<a class="item" href="#">Insurance</a>
+				<a class="item" href="#">Comments</a>
+			</div>
+		</div>
+		<div class="thirteen wide column">
+			<!-- PATIENT DETAILS -->
+			<table class="ui definition table">
+				<tbody>
+					<tr>
+						<td class="four wide column">Account #</td>
+						<td><%= account.number %></td>
+					</tr>
+					<tr>
+						<td>Patient Name</td>
+						<td><%= account.lastName %>, <%= account.firstName %></td>
+					</tr>
+					<tr>
+						<td>Current Balance</td>
+						<td>$<%= account.currentBalance.toFixed(2) %></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<!-- COMMENTS -->
+			<div class="ui segment">
+				<!-- NEW COMMENT BUTTON -->
+				<a class="ui right floated labeled icon button" href="/accounts/<%= account._id %>/comments/new">
+					<i class="comment outline icon"></i>
+					Comment
+				</a>
 
-		<!-- DISPLAY COMMENTS -->
-		<% account.comments.forEach(function(comment) { %>
-			<p><%= comment.author %></p>
-			<p><%= comment.content %></p>
-		<% }) %>
+				<!-- DISPLAY COMMENTS -->
+				<% account.comments.forEach(function(comment) { %>
+					<p><%= comment.author %></p>
+					<p><%= comment.content %></p>
+				<% }) %>
+			</div>
+		</div>
 	</div>
+	
+	
+
+	
 </div>
 
 <% include ../partials/footer %>
