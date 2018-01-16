@@ -48,6 +48,13 @@
 	
 	<!-- COMMENTS -->
 	<div class="ui segment">
+		<!-- NEW COMMENT BUTTON -->
+		<a class="ui right floated labeled icon button" href="/accounts/<%= account._id %>/comments/new">
+			<i class="comment outline icon"></i>
+			Comment
+		</a>
+
+		<!-- DISPLAY COMMENTS -->
 		<% account.comments.forEach(function(comment) { %>
 			<p><%= comment.author %></p>
 			<p><%= comment.content %></p>
