@@ -55,15 +55,14 @@ function seedDB() {
 						// Create comments
 						commentData.forEach(function(seed) {
 							Comment.create(seed, function(err, comment) {
-									if(err) {
-										console.log(err);
-									} else {
-										account.comments.push(comment._id);
-										account.save();
-										console.log("created new comment");
-									}
+								if(err) {
+									console.log(err);
+								} else {
+									account.comments.push(comment._id);
+									account.save();
+									console.log("created new comment");
 								}
-							)
+							});
 						});
 					}
 				});

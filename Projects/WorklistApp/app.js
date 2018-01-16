@@ -33,14 +33,14 @@ app.get("/accounts", function(req, res) {
 		if(err) {
 			console.log(err);
 		} else {
-			res.render("index", { accounts: accounts });
+			res.render("accounts/index", { accounts: accounts });
 		}
 	});
 });
 
 // NEW ROUTE
 app.get("/accounts/new", function(req, res) {
-	res.render("new");
+	res.render("accounts/new");
 });
 
 // CREATE ROUTE
@@ -48,7 +48,7 @@ app.post("/accounts", function(req, res) {
 	req.body.account.comment = req.sanitize(req.body.account.comment);
 	Account.create(req.body.account, function(err, newAccount) {
 		if(err) {
-			res.render("new");
+			res.render("accounts/new");
 		} else {
 			res.redirect("/accounts");
 		}
@@ -61,7 +61,20 @@ app.get("/accounts/:id", function(req, res) {
 		if(err) {
 			res.redirect("/accounts");
 		} else {
-			res.render("show", { account: foundAccount });
+			res.render("accounts/show", { account: foundAccount });
+		}
+	});
+});
+
+// ============================
+// COMMENTS ROUTES
+// ============================
+app.get("/accounts/:id/comments/new", function(req, res) {
+	Account.findById(req.params.id, function(err, account) {
+		if(err) {
+			console.log(err);
+		} else {
+			res.render("comments/new", { account: account });
 		}
 	});
 });
@@ -72,7 +85,7 @@ app.get("/accounts/:id/edit", function(req, res) {
 		if(err) {
 			res.redirect("/accounts");
 		} else {
-			res.render("edit", { account: foundAccount });
+			res.render("accounts/edit", { account: foundAccount });
 		}
 	});
 });
