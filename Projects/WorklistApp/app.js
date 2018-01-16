@@ -57,7 +57,7 @@ app.post("/accounts", function(req, res) {
 
 // SHOW ROUTE
 app.get("/accounts/:id", function(req, res) {
-	Account.findById(req.params.id, function(err, foundAccount) {
+	Account.findById(req.params.id).populate("comments").exec(function(err, foundAccount) {
 		if(err) {
 			res.redirect("/accounts");
 		} else {

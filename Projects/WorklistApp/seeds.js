@@ -31,7 +31,6 @@ commentData = [
 		content: "Short loin pork belly flank tail, pancetta prosciutto chuck brisket venison capicola. Pork buffalo meatloaf t-bone corned beef tongue ribeye alcatra landjaeger flank fatback picanha burgdoggen capicola pork loin.",
 		author: "Severus Snape"
 	}
-
 ];
 
 function seedDB() {
@@ -41,20 +40,18 @@ function seedDB() {
 			console.log(err);
 		}
 		console.log("removed accounts");
-		// Add a few accounts
-		data.forEach(function(seed) {
-			Account.create(seed, function(err, account) {
-				if(err) {
-					console.log(err);
-				} else {
-					console.log("account added");
-
-					// Remove all comments
-					Comment.remove({}, function(err) {
-						if(err) {
-							console.log(err);
-						}
-						console.log("removed comments");
+		Comment.remove({}, function(err) {
+			if(err) {
+				console.log(err);
+			}
+			console.log("removed comments");
+			// Add a few accounts
+			data.forEach(function(seed) {
+				Account.create(seed, function(err, account) {
+					if(err) {
+						console.log(err);
+					} else {
+						console.log("account added");
 						// Create comments
 						commentData.forEach(function(seed) {
 							Comment.create(seed, function(err, comment) {
@@ -68,8 +65,8 @@ function seedDB() {
 								}
 							)
 						});
-					});
-				}
+					}
+				});
 			});
 		});
 	});

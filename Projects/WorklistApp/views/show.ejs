@@ -48,7 +48,10 @@
 	
 	<!-- COMMENTS -->
 	<div class="ui segment">
-		<p><%= account.comment %></p>
+		<% account.comments.forEach(function(comment) { %>
+			<p><%= comment.author %></p>
+			<p><%= comment.content %></p>
+		<% }) %>
 	</div>
 </div>
 
