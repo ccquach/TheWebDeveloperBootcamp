@@ -44,6 +44,13 @@ NEW 	/dogs/new  	GET		Display form to make a new dog
 CREATE  /dogs		POST	Add new dog to DB
 SHOW    /dogs/:id   GET		Show info about one dog
 
+Nested Routes
+
+name 	  url							verb 	description
+==========================================================
+NEW 	/campgrounds/:id/comments/new 	GET
+CREATE 	/campgrounds/:id/comments		POST
+
 
 #Refactor Mongoose Code
 * Create a models directory
@@ -57,3 +64,8 @@ SHOW    /dogs/:id   GET		Show info about one dog
 #Add the Comment Model
 * Make our errors go away
 * Display comments on campground show page
+
+#Comment New/Create
+* Discuss nested routes
+* Add the comment new and create route
+* Add the new comment form
