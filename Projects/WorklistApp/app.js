@@ -79,6 +79,28 @@ app.get("/accounts/:id/comments/new", function(req, res) {
 	});
 });
 
+app.post("/accounts/:id", function(req, res) {
+	// Find account by Id
+	Account.findById(req.params.id, function(err, account) {
+		if(err) {
+			console.log(err);
+		} else {
+			// Create new comment
+			Comment.create(req.body.comment, function(err, comment) {
+				if(err) {
+					console.log(err);
+				} else {
+					// Connect new comment to account
+					account.comments.push(comment._id);
+					account.save();
+					// Redirect to account show page
+					res.redirect("/accounts/" + req.params.id);
+				}
+			});
+		}
+	});
+});
+
 // EDIT ROUTE
 app.get("/accounts/:id/edit", function(req, res) {
 	Account.findById(req.params.id, function(err, foundAccount) {
