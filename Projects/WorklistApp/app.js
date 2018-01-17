@@ -114,7 +114,6 @@ app.get("/accounts/:id/edit", function(req, res) {
 
 // UPDATE ROUTE
 app.put("/accounts/:id", function(req, res) {
-	req.body.account.comment = req.sanitize(req.body.account.comment);
 	Account.findByIdAndUpdate(req.params.id, req.body.account, function(err, updatedAccount) {
 		if(err) {
 			res.redirect("/accounts");
