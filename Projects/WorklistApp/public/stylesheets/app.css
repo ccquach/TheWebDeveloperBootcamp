@@ -14,20 +14,33 @@ input::-webkit-inner-spin-button {
 	font-size: 1.5em;	
 }
 
-.ui.secondary.pointing.menu .active.item {
+.ui.secondary.vertical.pointing.menu .active.item {
 	border-color: rgb(33, 186, 69);
 }
 
-.ui.vertical.menu {
+#nav {
+	position: fixed;
 	width: 100%;
 }
 
+/*.ui.vertical.menu {
+	width: 100%;
+}
+*/
 .menu i.search.icon {
 	font-size: 1.0em;
 }
 
 .container.main {
 	margin: 7.0em;
+}
+
+.ui.comments {
+	max-width: 95%;
+}
+
+#comments .sixteen.wide.column:nth-of-type(1) {
+	padding-bottom: 0;
 }
 
 .ui.table {

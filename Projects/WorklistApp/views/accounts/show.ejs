@@ -27,15 +27,15 @@
 	<div class="ui grid">
 		<div class="three wide column">
 			<!-- SIDEBAR PAGE NAV -->
-			<div class="ui secondary vertical pointing menu">
-				<a class="active item" href="#">Patient Info</a>
+			<div id="nav" class="ui secondary vertical pointing menu">
+				<a class="active item" href="#details">Patient Info</a>
 				<a class="item" href="#">Insurance</a>
-				<a class="item" href="#">Comments</a>
+				<a class="item" href="#comments">Comments</a>
 			</div>
 		</div>
 		<div class="thirteen wide column">
 			<!-- PATIENT DETAILS -->
-			<table class="ui definition table">
+			<table id="details" class="ui definition table">
 				<tbody>
 					<tr>
 						<td class="four wide column">Account #</td>
@@ -53,54 +53,39 @@
 			</table>
 			
 			<!-- COMMENTS -->
-			<div class="ui segment">
-				<!-- NEW COMMENT BUTTON -->
-				<div>
-				<a class="ui right floated labeled icon button" href="/accounts/<%= account._id %>/comments/new">
-					<i class="comment outline icon"></i>
-					Comment
-				</a>
-				</div>
+			<div id="comments" class="ui segment">
+				<div class="ui grid">
+					<!-- NEW COMMENT BUTTON -->
+					<div class="sixteen wide column">
+						<a class="ui right floated labeled green icon button" href="/accounts/<%= account._id %>/comments/new">
+							<i class="comment outline icon"></i>
+							Comment
+						</a>
+					</div>
 
-				<!-- DISPLAY COMMENTS -->
-				<div class="ui comments">
-					<% account.comments.forEach(function(comment) { %>
-						<div class="comment">
-							<div class="content">
-								<span class="author"><%= comment.author %></span>
-								<div class="metadata">
-									<span class="date"><%= moment(comment.created).format("M/D/YYYY") %></span>
+					<!-- DISPLAY COMMENTS -->
+					<div class="sixteen wide column">
+						<div class="ui divider"></div>
+						<div class="ui comments">
+							<% account.comments.forEach(function(comment) { %>
+								<div class="comment">
+									<div class="content">
+										<span class="author"><%= comment.author %></span>
+										<div class="metadata">
+											<span class="date"><%= moment(comment.created).format("M/D/YYYY") %></span>
+										</div>
+										<div class="text">
+											<p><%= comment.content %></p>
+										</div>
+									</div>
 								</div>
-								<div class="text">
-									<p><%= comment.content %></p>
-								</div>
-							</div>
+							<% }) %>
 						</div>
-					<% }) %>
+					</div>
 				</div>
-
-				<!-- <div class="ui divided items">
-					<% account.comments.forEach(function(comment) { %>
-						<div class="item">
-							<div class="content">
-								<div class="header"><%= comment.author %></div>
-								<div class="meta">
-									<span class="right floated"><%= moment(comment.created).format("M/D/YYYY") %></span>
-								</div>
-								<div class="description">
-									<p><%= comment.content %></p>
-								</div>
-							</div>
-						</div>
-					<% }) %>
-				</div> -->
 			</div>
 		</div>
 	</div>
-	
-	
-
-	
 </div>
 
 <% include ../partials/footer %>
