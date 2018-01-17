@@ -18,6 +18,10 @@ input::-webkit-inner-spin-button {
 	border-color: rgb(33, 186, 69);
 }
 
+.ui.vertical.menu {
+	width: 100%;
+}
+
 .menu i.search.icon {
 	font-size: 1.0em;
 }
