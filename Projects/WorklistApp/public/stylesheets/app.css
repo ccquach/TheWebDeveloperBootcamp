@@ -18,15 +18,14 @@ input::-webkit-inner-spin-button {
 	border-color: rgb(33, 186, 69);
 }
 
-#nav {
+#showVerticalNav {
 	position: fixed;
+}
+
+#showVerticalNav a {
 	width: 100%;
 }
 
-/*.ui.vertical.menu {
-	width: 100%;
-}
-*/
 .menu i.search.icon {
 	font-size: 1.0em;
 }
