@@ -55,16 +55,45 @@
 			<!-- COMMENTS -->
 			<div class="ui segment">
 				<!-- NEW COMMENT BUTTON -->
+				<div>
 				<a class="ui right floated labeled icon button" href="/accounts/<%= account._id %>/comments/new">
 					<i class="comment outline icon"></i>
 					Comment
 				</a>
+				</div>
 
 				<!-- DISPLAY COMMENTS -->
-				<% account.comments.forEach(function(comment) { %>
-					<p><%= comment.author %></p>
-					<p><%= comment.content %></p>
-				<% }) %>
+				<div class="ui comments">
+					<% account.comments.forEach(function(comment) { %>
+						<div class="comment">
+							<div class="content">
+								<span class="author"><%= comment.author %></span>
+								<div class="metadata">
+									<span class="date"><%= moment(comment.created).format("M/D/YYYY") %></span>
+								</div>
+								<div class="text">
+									<p><%= comment.content %></p>
+								</div>
+							</div>
+						</div>
+					<% }) %>
+				</div>
+
+				<!-- <div class="ui divided items">
+					<% account.comments.forEach(function(comment) { %>
+						<div class="item">
+							<div class="content">
+								<div class="header"><%= comment.author %></div>
+								<div class="meta">
+									<span class="right floated"><%= moment(comment.created).format("M/D/YYYY") %></span>
+								</div>
+								<div class="description">
+									<p><%= comment.content %></p>
+								</div>
+							</div>
+						</div>
+					<% }) %>
+				</div> -->
 			</div>
 		</div>
 	</div>

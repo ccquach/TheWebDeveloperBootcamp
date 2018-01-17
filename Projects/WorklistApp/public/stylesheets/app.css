@@ -5,6 +5,10 @@ input::-webkit-inner-spin-button {
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
+.secondary.menu {
+	margin: 0;
+}
+
 .main.menu i.icon,
 .secondary.menu i.icon {
 	font-size: 1.5em;	
@@ -20,6 +24,10 @@ input::-webkit-inner-spin-button {
 
 .container.main {
 	margin: 7.0em;
+}
+
+.ui.table {
+	margin: 0;
 }
 
 a i.icon,
