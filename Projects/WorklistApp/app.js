@@ -1,22 +1,21 @@
+// PACKAGES
 var expressSanitizer 	= require("express-sanitizer"),
 	methodOverride 		= require("method-override"),
 	bodyParser 			= require("body-parser"),
 	mongoose 			= require("mongoose"),
 	express 			= require("express"),
+	passport 			= require("passport"),
+	LocalStrategy 		= require("passport-local"),
 	seedDB				= require("./seeds"),
 	moment				= require("moment"),
 	app 				= express();
-
-// AUTH PACKAGES
-var passport 			= require("passport"),
-	LocalStrategy 		= require("passport-local");	
 
 // MONGOOSE MODELS
 var Account 			= require("./models/account"),
 	Comment 			= require("./models/comment"),
 	User 				= require("./models/user");
 
-// APP CONFIG
+// APP CONFIGURATION
 mongoose.connect("mongodb://127.0.0.1/worklist_app");
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -25,6 +24,18 @@ app.use(expressSanitizer());
 app.use(methodOverride("_method"));
 app.locals.moment = moment;
 seedDB();
+
+// PASSPORT CONFIGURATION
+app.use(require("express-session")({
+	secret: "I am anything.",
+	resave: false,
+	saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // RESTful ROUTES
 app.get("/", function(req, res) {
