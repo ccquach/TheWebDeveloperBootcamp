@@ -19,3 +19,15 @@
 #Auth Code Along Part 2
 * Create User model
 * Configure Passport
+
+#Auth Code Along Part 3
+* Add Register routes
+* Add Register form
+
+#Auth Code Along Part 4
+* Add Login routes
+* Add Login form
+
+#Auth Code Along Part 5
+* Add Logout route
+* Add isLoggedIn middleware
