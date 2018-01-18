@@ -37,6 +37,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// =============== SHOULD BE LANDING PAGE ===============
 app.get("/", function(req, res) {
 	res.redirect("/accounts");
 });
@@ -177,6 +178,11 @@ app.post("/login", passport.authenticate("local",
 		successRedirect: "/accounts",
 		failureRedirect: "/login"
 	}), function(req, res){
+});
+
+app.get("/logout", function(req, res) {
+	req.logout();
+	res.redirect("/");
 });
 
 app.listen(3000, function() {
