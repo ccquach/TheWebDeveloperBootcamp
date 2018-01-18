@@ -37,6 +37,11 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+app.use(function(req, res, next) {
+	res.locals.currentUser = req.user;
+	next();
+});
+
 // =============== SHOULD BE LANDING PAGE ===============
 app.get("/", function(req, res) {
 	res.redirect("/accounts");
@@ -152,6 +157,7 @@ app.delete("/accounts/:id", isLoggedIn, function(req, res) {
 // ============================
 // AUTH ROUTES
 // ============================
+// Only allow username:admin to access Register route
 app.get("/register", isLoggedIn, function(req, res) {
 	res.render("register");
 });
