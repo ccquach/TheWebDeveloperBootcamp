@@ -65,7 +65,6 @@ app.get("/accounts/new", isLoggedIn, function(req, res) {
 
 // CREATE ROUTE
 app.post("/accounts", isLoggedIn, function(req, res) {
-	req.body.account.comment = req.sanitize(req.body.account.comment);
 	Account.create(req.body.account, function(err, newAccount) {
 		if(err) {
 			res.render("accounts/new");
@@ -100,6 +99,7 @@ app.get("/accounts/:id/comments/new", isLoggedIn, function(req, res) {
 });
 
 app.post("/accounts/:id", isLoggedIn, function(req, res) {
+	req.body.comment.content = req.sanitize(req.body.comment.content);
 	// Find account by Id
 	Account.findById(req.params.id, function(err, account) {
 		if(err) {
@@ -157,7 +157,6 @@ app.delete("/accounts/:id", isLoggedIn, function(req, res) {
 // ============================
 // AUTH ROUTES
 // ============================
-// Only allow username:admin to access Register route
 app.get("/register", isLoggedIn, function(req, res) {
 	res.render("register");
 });
