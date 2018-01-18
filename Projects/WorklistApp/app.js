@@ -7,15 +7,19 @@ var expressSanitizer 	= require("express-sanitizer"),
 	moment				= require("moment"),
 	app 				= express();
 
+// AUTH PACKAGES
+var passport 			= require("passport"),
+	LocalStrategy 		= require("passport-local");	
+
 // MONGOOSE MODELS
-var Account = require("./models/account"),
-	Comment = require("./models/comment"),
-	User 	= require("./models/user");
+var Account 			= require("./models/account"),
+	Comment 			= require("./models/comment"),
+	User 				= require("./models/user");
 
 // APP CONFIG
 mongoose.connect("mongodb://127.0.0.1/worklist_app");
 app.set("view engine", "ejs");
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressSanitizer());
 app.use(methodOverride("_method"));
