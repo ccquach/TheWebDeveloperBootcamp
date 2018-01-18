@@ -43,7 +43,7 @@ app.get("/", function(req, res) {
 });
 
 // INDEX ROUTE
-app.get("/accounts", function(req, res) {
+app.get("/accounts", isLoggedIn, function(req, res) {
 	Account.find({}, function(err, accounts) {
 		if(err) {
 			console.log(err);
@@ -54,12 +54,12 @@ app.get("/accounts", function(req, res) {
 });
 
 // NEW ROUTE
-app.get("/accounts/new", function(req, res) {
+app.get("/accounts/new", isLoggedIn, function(req, res) {
 	res.render("accounts/new");
 });
 
 // CREATE ROUTE
-app.post("/accounts", function(req, res) {
+app.post("/accounts", isLoggedIn, function(req, res) {
 	req.body.account.comment = req.sanitize(req.body.account.comment);
 	Account.create(req.body.account, function(err, newAccount) {
 		if(err) {
@@ -71,7 +71,7 @@ app.post("/accounts", function(req, res) {
 });
 
 // SHOW ROUTE
-app.get("/accounts/:id", function(req, res) {
+app.get("/accounts/:id", isLoggedIn, function(req, res) {
 	Account.findById(req.params.id).populate("comments").exec(function(err, foundAccount) {
 		if(err) {
 			res.redirect("/accounts");
@@ -84,7 +84,7 @@ app.get("/accounts/:id", function(req, res) {
 // ============================
 // COMMENTS ROUTES
 // ============================
-app.get("/accounts/:id/comments/new", function(req, res) {
+app.get("/accounts/:id/comments/new", isLoggedIn, function(req, res) {
 	Account.findById(req.params.id, function(err, account) {
 		if(err) {
 			console.log(err);
@@ -94,7 +94,7 @@ app.get("/accounts/:id/comments/new", function(req, res) {
 	});
 });
 
-app.post("/accounts/:id", function(req, res) {
+app.post("/accounts/:id", isLoggedIn, function(req, res) {
 	// Find account by Id
 	Account.findById(req.params.id, function(err, account) {
 		if(err) {
@@ -117,7 +117,7 @@ app.post("/accounts/:id", function(req, res) {
 });
 
 // EDIT ROUTE
-app.get("/accounts/:id/edit", function(req, res) {
+app.get("/accounts/:id/edit", isLoggedIn, function(req, res) {
 	Account.findById(req.params.id, function(err, foundAccount) {
 		if(err) {
 			res.redirect("/accounts");
@@ -128,7 +128,7 @@ app.get("/accounts/:id/edit", function(req, res) {
 });
 
 // UPDATE ROUTE
-app.put("/accounts/:id", function(req, res) {
+app.put("/accounts/:id", isLoggedIn, function(req, res) {
 	Account.findByIdAndUpdate(req.params.id, req.body.account, function(err, updatedAccount) {
 		if(err) {
 			res.redirect("/accounts");
@@ -139,7 +139,7 @@ app.put("/accounts/:id", function(req, res) {
 });
 
 // DELETE ROUTE
-app.delete("/accounts/:id", function(req, res) {
+app.delete("/accounts/:id", isLoggedIn, function(req, res) {
 	Account.findByIdAndRemove(req.params.id, function(err) {
 		if(err) {
 			res.redirect("/accounts");
@@ -152,11 +152,11 @@ app.delete("/accounts/:id", function(req, res) {
 // ============================
 // AUTH ROUTES
 // ============================
-app.get("/register", function(req, res) {
+app.get("/register", isLoggedIn, function(req, res) {
 	res.render("register");
 });
 
-app.post("/register", function(req, res) {
+app.post("/register", isLoggedIn, function(req, res) {
 	var newUser = new User({ username: req.body.username });
 	User.register(newUser, req.body.password, function(err, user) {
 		if(err) {
@@ -184,6 +184,13 @@ app.get("/logout", function(req, res) {
 	req.logout();
 	res.redirect("/");
 });
+
+function isLoggedIn(req, res, next) {
+	if(req.isAuthenticated()) {
+		return next();
+	}
+	res.redirect("/login");
+}
 
 app.listen(3000, function() {
 	console.log("Serving Worklist Application on port 3000");
