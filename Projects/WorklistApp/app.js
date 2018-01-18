@@ -168,6 +168,17 @@ app.post("/register", function(req, res) {
 	});
 });
 
+app.get("/login", function(req, res) {
+	res.render("login");
+});
+
+app.post("/login", passport.authenticate("local", 
+	{
+		successRedirect: "/accounts",
+		failureRedirect: "/login"
+	}), function(req, res){
+});
+
 app.listen(3000, function() {
 	console.log("Serving Worklist Application on port 3000");
 });
