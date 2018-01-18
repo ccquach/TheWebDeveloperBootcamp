@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 
-var commentSchema = mongoose.Schema({
+var commentSchema = new mongoose.Schema({
 	content: String,
 	author: String,
 	created: { type: Date, default: Date.now }
