@@ -6,82 +6,79 @@
 		<i class="circular id card outline icon"></i>
 	</h1>
 
-	<!-- ACCOUNT SETTINGS -->
-	<div class="ui secondary menu">
-		<div class="right menu">
-			<div class="item">
-				<a data-tooltip="Edit" data-position="top center" href="/accounts/<%= account._id %>/edit">
-					<i class="edit link icon"></i>
-				</a>
-			</div>
-			<div class="item">
-				<form action="/accounts/<%= account._id %>?_method=DELETE" method="POST">
-					<button id="delete" data-tooltip="Delete" data-position="top center">
-						<i class="trash link icon"></i>
-					</button>
-				</form>
+	<div class="ui grid">
+		<div class="sixteen wide column">
+			<div class="ui secondary pointing menu">
+				<!-- PAGE NAVIGATION -->
+				<a class="active item" href="#">Patient Info</a>
+				<a class="item" href="#">Insurance</a>
+				<a class="item" href="#comments">Comments</a>
+
+				<!-- ACCOUNT SETTINGS -->
+				<div class="right menu">
+					<div class="item">
+						<a data-tooltip="Edit" data-position="top center" href="/accounts/<%= account._id %>/edit">
+							<i class="edit link icon"></i>
+						</a>
+					</div>
+					<div class="item">
+						<form action="/accounts/<%= account._id %>?_method=DELETE" method="POST">
+							<button id="delete" data-tooltip="Delete" data-position="top center">
+								<i class="trash link icon"></i>
+							</button>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-
-	<div class="ui grid">
-		<div class="three wide column">
-			<!-- SIDEBAR PAGE NAV -->
-			<div id="showVerticalNav" class="ui secondary vertical pointing menu">
-				<a class="active item" href="#details">Patient Info</a>
-				<a class="item" href="#">Insurance</a>
-				<a class="item" href="#comments">Comments</a>
+	
+	<!-- PATIENT DETAILS -->
+	<table class="ui definition table">
+		<tbody>
+			<tr>
+				<td class="four wide column">Account #</td>
+				<td><%= account.number %></td>
+			</tr>
+			<tr>
+				<td>Patient Name</td>
+				<td><%= account.lastName %>, <%= account.firstName %></td>
+			</tr>
+			<tr>
+				<td>Current Balance</td>
+				<td>$<%= account.currentBalance.toFixed(2) %></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<!-- COMMENTS -->
+	<div id="comments" class="ui segment">
+		<div class="ui grid">
+			<!-- NEW COMMENT BUTTON -->
+			<div class="sixteen wide column">
+				<a class="ui right floated labeled green icon button" href="/accounts/<%= account._id %>/comments/new">
+					<i class="comment outline icon"></i>
+					Comment
+				</a>
 			</div>
-		</div>
-		<div class="thirteen wide column">
-			<!-- PATIENT DETAILS -->
-			<table id="details" class="ui definition table">
-				<tbody>
-					<tr>
-						<td class="four wide column">Account #</td>
-						<td><%= account.number %></td>
-					</tr>
-					<tr>
-						<td>Patient Name</td>
-						<td><%= account.lastName %>, <%= account.firstName %></td>
-					</tr>
-					<tr>
-						<td>Current Balance</td>
-						<td>$<%= account.currentBalance.toFixed(2) %></td>
-					</tr>
-				</tbody>
-			</table>
-			
-			<!-- COMMENTS -->
-			<div id="comments" class="ui segment">
-				<div class="ui grid">
-					<!-- NEW COMMENT BUTTON -->
-					<div class="sixteen wide column">
-						<a class="ui right floated labeled green icon button" href="/accounts/<%= account._id %>/comments/new">
-							<i class="comment outline icon"></i>
-							Comment
-						</a>
-					</div>
 
-					<!-- DISPLAY COMMENTS -->
-					<div class="sixteen wide column">
-						<div class="ui divider"></div>
-						<div class="ui comments">
-							<% account.comments.forEach(function(comment) { %>
-								<div class="comment">
-									<div class="content">
-										<span class="author"><%= comment.author %></span>
-										<div class="metadata">
-											<span class="date"><%= moment(comment.created).format("M/D/YYYY") %></span>
-										</div>
-										<div class="text">
-											<p><%= comment.content %></p>
-										</div>
-									</div>
+			<!-- DISPLAY COMMENTS -->
+			<div class="sixteen wide column">
+				<div class="ui divider"></div>
+				<div class="ui comments">
+					<% account.comments.forEach(function(comment) { %>
+						<div class="comment">
+							<div class="content">
+								<span class="author"><%= comment.author %></span>
+								<div class="metadata">
+									<span class="date"><%= moment(comment.created).format("M/D/YYYY") %></span>
 								</div>
-							<% }) %>
+								<div class="text">
+									<p><%= comment.content %></p>
+								</div>
+							</div>
 						</div>
-					</div>
+					<% }) %>
 				</div>
 			</div>
 		</div>

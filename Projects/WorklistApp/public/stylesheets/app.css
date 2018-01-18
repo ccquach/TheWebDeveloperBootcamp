@@ -5,25 +5,18 @@ input::-webkit-inner-spin-button {
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
-.secondary.menu {
-	margin: 0;
-}
-
 .main.menu i.icon,
 .secondary.menu i.icon {
 	font-size: 1.5em;	
 }
 
-.ui.secondary.vertical.pointing.menu .active.item {
-	border-color: rgb(33, 186, 69);
-}
-
-#showVerticalNav {
+.ui.secondary.pointing.menu {
 	position: fixed;
+	width: inherit;
 }
 
-#showVerticalNav a {
-	width: 100%;
+.ui.secondary.pointing.menu .active.item {
+	border-color: rgb(33, 186, 69);
 }
 
 .menu i.search.icon {
@@ -42,9 +35,9 @@ input::-webkit-inner-spin-button {
 	padding-bottom: 0;
 }
 
-.ui.table {
+/*.ui.table {
 	margin: 0;
-}
+}*/
 
 a i.icon,
 button i.icon {
