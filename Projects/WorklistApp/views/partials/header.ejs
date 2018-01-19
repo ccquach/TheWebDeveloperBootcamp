@@ -6,15 +6,15 @@
 		<link rel="stylesheet" type="text/css" href="/stylesheets/app.css">
 	</head>
 
-	<% if(title === "landing") { %>
-		<body id="landingBody">
-	<% } else { %>
+	<% if(!title) { %>
 		<body>
+	<% } else { %>
+		<body id="<%= title %>Body">
 	<% } %>
 		<div class="ui fixed borderless main menu">
 			<div class="ui container">
-				<div class="header item"><i class="green leaf icon"></i>Ethos Management</div>
-				<a class="item" href="/">
+				<a class="header item" href="/"><i class="green leaf icon"></i>Ethos Management</a>
+				<a class="item" href="/accounts">
 					<i class="home icon"></i>
 					Home
 				</a>
