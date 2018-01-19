@@ -19,18 +19,24 @@ router.post("/", isLoggedin, function(req, res) {
 	//get data from form and add to campgrounds collection
 	var name 	= req.body.name,
 		image 	= req.body.image,
-		desc 	= req.body.description
+		desc 	= req.body.description;
+	var author = {
+		id: req.user._id,
+		username: req.user.username
+	};
 	var newCampgound = {
 		name: name,
 		image: image,
-		description: desc
-	}
+		description: desc,
+		author: author
+	};
 	//create a new campground and save to db
 	Campground.create(newCampgound, function(err, newlyCreated) {
 		if(err) {
 			console.log(err);
 		} else {
 			//redirect back to campgrounds page
+			console.log(newlyCreated);
 			res.redirect("/campgrounds");
 		}
 	});
