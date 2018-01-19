@@ -51,13 +51,12 @@ html {
 	font-size: 1.5em;	
 }
 
-.ui.secondary.pointing.menu {
+.ui.vertical.menu {
+	width: 15%;
 	position: fixed;
-	width: inherit;
-}
-
-.ui.secondary.pointing.menu .active.item {
-	border-color: rgb(33, 186, 69);
+	/*padding-top: 170px;*/
+	padding-top: 12.5em;
+	box-sizing: border-box;
 }
 
 .menu i.search.icon {
@@ -68,7 +67,7 @@ html {
 /* Container 				*/
 /* ======================== */
 .container.main {
-	margin: 7.0em;
+	margin: 5.0em;
 }
 
 /* ======================== */
