@@ -5,7 +5,12 @@
 		<link rel="stylesheet" type="text/css" href="/stylesheets/lib/semantic-ui-css/semantic.min.css">
 		<link rel="stylesheet" type="text/css" href="/stylesheets/app.css">
 	</head>
-	<body>
+
+	<% if(title === "landing") { %>
+		<body id="landingBody">
+	<% } else { %>
+		<body>
+	<% } %>
 		<div class="ui fixed borderless main menu">
 			<div class="ui container">
 				<div class="header item"><i class="green leaf icon"></i>Ethos Management</div>
@@ -26,4 +31,4 @@
 					<% } %>
 				</div>
 			</div>
-		</div>
+		</div>}
