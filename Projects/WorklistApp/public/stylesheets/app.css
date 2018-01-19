@@ -39,10 +39,6 @@ input::-webkit-inner-spin-button {
 	padding-bottom: 0;
 }
 
-/*.ui.table {
-	margin: 0;
-}*/
-
 a i.icon,
 button i.icon {
 	color: rgba(0,0,0,.87);
@@ -53,4 +49,16 @@ button i.icon {
 	border: none;
 	color: inherit;
 	font-family: inherit;
+}
+
+#login, #register {
+	margin: 7.0em;
+	text-align: center;
+	width: 30%;
+}
+
+#login .ui.button,
+#register .ui.button {
+	display: block;
+	width: 100%;
 }

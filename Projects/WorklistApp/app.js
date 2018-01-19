@@ -44,7 +44,7 @@ app.use(function(req, res, next) {
 
 // =============== SHOULD BE LANDING PAGE ===============
 app.get("/", function(req, res) {
-	res.redirect("/accounts");
+	res.render("landing");
 });
 
 // INDEX ROUTE
