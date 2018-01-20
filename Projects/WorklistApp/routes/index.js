@@ -12,19 +12,19 @@ router.get("/", function(req, res) {
 // AUTH ROUTES
 // ============================
 // show registration form
-router.get("/register", isLoggedIn, function(req, res) {
+router.get("/register", isAdmin, function(req, res) {
 	res.render("register");
 });
 
 // handle sign up logic
-router.post("/register", isLoggedIn, function(req, res) {
+router.post("/register", isAdmin, function(req, res) {
 	var newUser = new User({ username: req.body.username });
 	User.register(newUser, req.body.password, function(err, user) {
 		if(err) {
 			console.log(err);
 			return res.render("/register");
 		}
-		res.redirect("/accounts");
+		res.redirect("back");
 		// passport.authenticate("local")(req, res, function() {
 		// 	res.redirect("/accounts");
 		// });
@@ -51,11 +51,16 @@ router.get("/logout", function(req, res) {
 });
 
 // middleware
-function isLoggedIn(req, res, next) {
+function isAdmin(req, res, next) {
 	if(req.isAuthenticated()) {
-		return next();
+		if(req.user.username === "admin") {
+			next();
+		} else {
+			res.redirect("back");
+		}
+	} else {
+		res.redirect("back");
 	}
-	res.redirect("/login");
 }
 
 module.exports = router;
