@@ -17,8 +17,9 @@
 		</h2>
 		<!-- ACCOUNT SETTINGS -->
 		<div class="ui secondary menu">
-			<% if(currentUser && account.author.id.equals(currentUser._id)) { %>
-				<div class="right menu">
+			<div class="right menu">
+				<span class="right floated item">Added by <%= account.author.username %></span>
+				<% if(currentUser && account.author.id.equals(currentUser._id)) { %>
 					<div class="item">
 						<a data-tooltip="Edit" data-position="top center" href="/accounts/<%= account._id %>/edit">
 							<i class="edit link icon"></i>
@@ -31,8 +32,8 @@
 							</button>
 						</form>
 					</div>
-				</div>
-			<% } %>
+				<% } %>
+			</div>
 		</div>
 		
 		<!-- PATIENT DETAILS -->
