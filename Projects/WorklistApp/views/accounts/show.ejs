@@ -68,7 +68,7 @@
 						<% account.comments.forEach(function(comment) { %>
 							<div class="comment">
 								<div class="content">
-									<span class="author"><%= comment.author %></span>
+									<span class="author"><%= comment.author.username %></span>
 									<div class="metadata">
 										<span class="date"><%= moment(comment.created).format("M/D/YYYY") %></span>
 									</div>
