@@ -36,38 +36,38 @@ commentData = [
 function seedDB() {
 	// Remove all accounts
 	Account.remove({}, function(err) {
-		if(err) {
-			console.log(err);
-		}
-		console.log("removed accounts");
-		Comment.remove({}, function(err) {
-			if(err) {
-				console.log(err);
-			}
-			console.log("removed comments");
-			// Add a few accounts
-			data.forEach(function(seed) {
-				Account.create(seed, function(err, account) {
-					if(err) {
-						console.log(err);
-					} else {
-						console.log("account added");
-						// Create comments
-						commentData.forEach(function(seed) {
-							Comment.create(seed, function(err, comment) {
-								if(err) {
-									console.log(err);
-								} else {
-									account.comments.push(comment._id);
-									account.save();
-									console.log("created new comment");
-								}
-							});
-						});
-					}
-				});
-			});
-		});
+		// if(err) {
+		// 	console.log(err);
+		// }
+		// console.log("removed accounts");
+		// Comment.remove({}, function(err) {
+		// 	if(err) {
+		// 		console.log(err);
+		// 	}
+		// 	console.log("removed comments");
+		// 	// Add a few accounts
+		// 	data.forEach(function(seed) {
+		// 		Account.create(seed, function(err, account) {
+		// 			if(err) {
+		// 				console.log(err);
+		// 			} else {
+		// 				console.log("account added");
+		// 				// Create comments
+		// 				commentData.forEach(function(seed) {
+		// 					Comment.create(seed, function(err, comment) {
+		// 						if(err) {
+		// 							console.log(err);
+		// 						} else {
+		// 							account.comments.push(comment._id);
+		// 							account.save();
+		// 							console.log("created new comment");
+		// 						}
+		// 					});
+		// 				});
+		// 			}
+		// 		});
+		// 	});
+		// });
 	});
 }
 module.exports = seedDB;

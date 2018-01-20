@@ -17,21 +17,24 @@
 		</h2>
 		<!-- ACCOUNT SETTINGS -->
 		<div class="ui secondary menu">
-			<div class="right menu">
-				<div class="item">
-					<a data-tooltip="Edit" data-position="top center" href="/accounts/<%= account._id %>/edit">
-						<i class="edit link icon"></i>
-					</a>
+			<% if(currentUser && account.author.id.equals(currentUser._id)) { %>
+				<div class="right menu">
+					<div class="item">
+						<a data-tooltip="Edit" data-position="top center" href="/accounts/<%= account._id %>/edit">
+							<i class="edit link icon"></i>
+						</a>
+					</div>
+					<div class="item">
+						<form action="/accounts/<%= account._id %>?_method=DELETE" method="POST">
+							<button id="delete" data-tooltip="Delete" data-position="top center">
+								<i class="trash link icon"></i>
+							</button>
+						</form>
+					</div>
 				</div>
-				<div class="item">
-					<form action="/accounts/<%= account._id %>?_method=DELETE" method="POST">
-						<button id="delete" data-tooltip="Delete" data-position="top center">
-							<i class="trash link icon"></i>
-						</button>
-					</form>
-				</div>
-			</div>
+			<% } %>
 		</div>
+		
 		<!-- PATIENT DETAILS -->
 		<table class="ui definition table">
 			<tbody>

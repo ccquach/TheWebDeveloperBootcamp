@@ -50,21 +50,17 @@ router.get("/:id", isLoggedIn, function(req, res) {
 });
 
 // EDIT ROUTE
-router.get("/:id/edit", isLoggedIn, function(req, res) {
+router.get("/:id/edit", checkAccountOwnership, function(req, res) {
 	Account.findById(req.params.id, function(err, foundAccount) {
-		if(err) {
-			res.redirect("/accounts");
-		} else {
-			res.render("accounts/edit", { account: foundAccount });
-		}
+		res.render("accounts/edit", { account: foundAccount });
 	});
 });
 
 // UPDATE ROUTE
-router.put("/:id", isLoggedIn, function(req, res) {
+router.put("/:id", checkAccountOwnership, function(req, res) {
 	Account.findByIdAndUpdate(req.params.id, req.body.account, function(err, updatedAccount) {
 		if(err) {
-			res.redirect("/accounts");
+			res.redirect("back");
 		} else {
 			res.redirect("/accounts/" + req.params.id);
 		}
@@ -72,10 +68,10 @@ router.put("/:id", isLoggedIn, function(req, res) {
 });
 
 // DELETE ROUTE
-router.delete("/:id", isLoggedIn, function(req, res) {
+router.delete("/:id", checkAccountOwnership, function(req, res) {
 	Account.findByIdAndRemove(req.params.id, function(err) {
 		if(err) {
-			res.redirect("/accounts");
+			res.redirect("back");
 		} else {
 			res.redirect("/accounts");
 		}
@@ -88,6 +84,24 @@ function isLoggedIn(req, res, next) {
 		return next();
 	}
 	res.redirect("/login");
+}
+
+function checkAccountOwnership(req, res, next) {
+	if(req.isAuthenticated()) {
+		Account.findById(req.params.id, function(err, foundAccount) {
+			if(err) {
+				res.redirect("back");
+			} else {
+				if(foundAccount.author.id.equals(req.user._id)) {
+					next();
+				} else {
+					res.redirect("back");
+				}
+			}
+		});
+	} else {
+		res.redirect("back");
+	}
 }
 
 module.exports = router;

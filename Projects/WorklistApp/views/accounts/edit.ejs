@@ -21,7 +21,7 @@
 		</div>
 		<div class="field">
 			<label>Current Balance</label>
-			<input type="number" step="0.01" name="account[currentBalance]" value="<%= account.currentBalance %>" required>
+			<input type="number" step="0.01" name="account[currentBalance]" value="<%= account.currentBalance.toFixed(2) %>" required>
 		</div>
 		<input class="ui button" type="submit">
 	</form>

@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressSanitizer());
 app.use(methodOverride("_method"));
 app.locals.moment = moment;
-seedDB();
+// seedDB();  //seed the database
 
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({

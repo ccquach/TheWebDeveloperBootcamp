@@ -24,9 +24,10 @@ router.post("/register", isLoggedIn, function(req, res) {
 			console.log(err);
 			return res.render("/register");
 		}
-		passport.authenticate("local")(req, res, function() {
-			res.redirect("/accounts");
-		});
+		res.redirect("/accounts");
+		// passport.authenticate("local")(req, res, function() {
+		// 	res.redirect("/accounts");
+		// });
 	});
 });
 
