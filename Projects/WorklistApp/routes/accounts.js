@@ -20,10 +20,19 @@ router.get("/new", isLoggedIn, function(req, res) {
 
 // CREATE ROUTE
 router.post("/", isLoggedIn, function(req, res) {
-	Account.create(req.body.account, function(err, newAccount) {
+	// New account
+	var newAccount = req.body.account;
+	// Add user id and username to account
+	newAccount.author = {
+		id: req.user._id,
+		username: req.user.username
+	};
+	// Create new account
+	Account.create(newAccount, function(err, newAccount) {
 		if(err) {
 			res.render("accounts/new");
 		} else {
+			console.log(newAccount);
 			res.redirect("/accounts");
 		}
 	});
