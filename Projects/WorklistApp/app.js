@@ -4,6 +4,7 @@ var expressSanitizer 	= require("express-sanitizer"),
 	bodyParser 			= require("body-parser"),
 	mongoose 			= require("mongoose"),
 	express 			= require("express"),
+	flash				= require("connect-flash"),
 	passport 			= require("passport"),
 	LocalStrategy 		= require("passport-local"),
 	seedDB				= require("./seeds"),
@@ -27,6 +28,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressSanitizer());
 app.use(methodOverride("_method"));
+app.use(flash());
 app.locals.moment = moment;
 // seedDB();  //seed the database
 
@@ -45,6 +47,8 @@ passport.deserializeUser(User.deserializeUser());
 app.use(function(req, res, next) {
 	res.locals = {
 		currentUser: req.user,
+		success: req.flash("success"),
+		error: req.flash("error"),
 		title: undefined
 	};
 	next();

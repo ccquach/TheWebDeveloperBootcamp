@@ -145,3 +145,12 @@ button i.icon {
 	display: block;
 	width: 100%;
 }
+
+/* ======================== */
+/* Error/Success Message	*/
+/* ======================== */
+.flash-message {
+	width: 85%;
+	margin: 0 auto;
+	padding-top: 80px;
+}

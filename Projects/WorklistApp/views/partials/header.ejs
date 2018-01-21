@@ -32,3 +32,18 @@
 				</div>
 			</div>
 		</div>
+
+		<% if(success && success.length > 0) { %>
+			<div class="flash-message container">
+				<div class="ui visible success message">
+					<%= success %>
+				</div>
+			</div>
+		<% } %>
+		<% if(error && error.length > 0) { %>
+			<div class="flash-message container">
+				<div class="ui visible error message">
+					<%= error %>
+				</div>
+			</div>
+		<% } %>
