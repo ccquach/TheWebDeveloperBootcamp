@@ -4,6 +4,7 @@ var expressSanitizer 	= require("express-sanitizer"),
 	bodyParser 			= require("body-parser"),
 	mongoose 			= require("mongoose"),
 	express 			= require("express"),
+	back				= require("express-back"),
 	flash				= require("connect-flash"),
 	passport 			= require("passport"),
 	LocalStrategy 		= require("passport-local"),
@@ -38,6 +39,7 @@ app.use(require("express-session")({
 	resave: false,
 	saveUninitialized: false
 }));
+app.use(back());
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));

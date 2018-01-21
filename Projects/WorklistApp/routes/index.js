@@ -22,10 +22,11 @@ router.post("/register", middleware.isAdmin, function(req, res) {
 	var newUser = new User({ username: req.body.username });
 	User.register(newUser, req.body.password, function(err, user) {
 		if(err) {
-			console.log(err);
-			return res.render("/register");
+			req.flash("error", err.message);
+			return res.redirect("/register");
 		}
-		res.redirect("back");
+		req.flash("success", "Registration completed for new user.");
+		res.back();
 		// passport.authenticate("local")(req, res, function() {
 		// 	res.redirect("/accounts");
 		// });
@@ -48,6 +49,7 @@ router.post("/login", passport.authenticate("local",
 // logout route
 router.get("/logout", function(req, res) {
 	req.logout();
+	req.flash("success", "You have been successfully logged out.");
 	res.redirect("/");
 });
 

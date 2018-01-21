@@ -8,7 +8,7 @@ var middleware = require("../middleware");
 router.get("/new", middleware.isLoggedIn, function(req, res) {
 	Account.findById(req.params.id, function(err, account) {
 		if(err) {
-			console.log(err);
+			res.back();
 		} else {
 			res.render("comments/new", { account: account });
 		}
@@ -26,6 +26,7 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
 			// Create new comment
 			Comment.create(req.body.comment, function(err, comment) {
 				if(err) {
+					req.flash("error", "Failed to add new comment.");
 					console.log(err);
 				} else {
 					// Add username and id to comment
@@ -37,6 +38,7 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
 					account.comments.push(comment._id);
 					account.save();
 					// Redirect to account show page
+					req.flash("success", "Successfully added new comment.");
 					res.redirect("/accounts/" + req.params.id);
 				}
 			});

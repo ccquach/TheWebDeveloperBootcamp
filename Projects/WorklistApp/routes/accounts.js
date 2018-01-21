@@ -7,7 +7,8 @@ var middleware = require("../middleware");
 router.get("/", middleware.isLoggedIn, function(req, res) {
 	Account.find({}, function(err, accounts) {
 		if(err) {
-			console.log(err);
+			req.flash("error", "An error occurred while loading the accounts.");
+			res.redirect("/");
 		} else {
 			res.render("accounts/index", { accounts: accounts });
 		}
@@ -31,9 +32,11 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
 	// Create new account
 	Account.create(newAccount, function(err, newAccount) {
 		if(err) {
+			req.flash("error", "Failed to create new account.");
 			res.render("accounts/new");
 		} else {
-			console.log(newAccount);
+			console.log("=== NEW ===:\n" + newAccount);
+			req.flash("success", "Successfully created new account.")
 			res.redirect("/accounts");
 		}
 	});
@@ -43,6 +46,7 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
 router.get("/:id", middleware.isLoggedIn, function(req, res) {
 	Account.findById(req.params.id).populate("comments").exec(function(err, foundAccount) {
 		if(err) {
+			req.flash("error", "Unable to find the account. Please note the account number and contact support.");
 			res.redirect("/accounts");
 		} else {
 			res.render("accounts/show", { account: foundAccount });
@@ -61,8 +65,11 @@ router.get("/:id/edit", middleware.checkAccountOwnership, function(req, res) {
 router.put("/:id", middleware.checkAccountOwnership, function(req, res) {
 	Account.findByIdAndUpdate(req.params.id, req.body.account, function(err, updatedAccount) {
 		if(err) {
-			res.redirect("back");
+			req.flash("error", "Failed to update account.");
+			res.back();
 		} else {
+			console.log("=== UPDATE ===:\n" + updatedAccount);
+			req.flash("success", "Successfully updated account.");
 			res.redirect("/accounts/" + req.params.id);
 		}
 	});
@@ -72,8 +79,10 @@ router.put("/:id", middleware.checkAccountOwnership, function(req, res) {
 router.delete("/:id", middleware.checkAccountOwnership, function(req, res) {
 	Account.findByIdAndRemove(req.params.id, function(err) {
 		if(err) {
-			res.redirect("back");
+			req.flash("error", "Failed to delete account.");
+			res.back();
 		} else {
+			req.flash("success", "Successfully deleted account.");
 			res.redirect("/accounts");
 		}
 	});
