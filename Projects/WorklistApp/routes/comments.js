@@ -2,9 +2,10 @@ var express = require("express");
 var router = express.Router({ mergeParams: true });
 var Account = require("../models/account");
 var Comment = require("../models/comment");
+var middleware = require("../middleware");
 
 // Comments new
-router.get("/new", isLoggedIn, function(req, res) {
+router.get("/new", middleware.isLoggedIn, function(req, res) {
 	Account.findById(req.params.id, function(err, account) {
 		if(err) {
 			console.log(err);
@@ -15,7 +16,7 @@ router.get("/new", isLoggedIn, function(req, res) {
 });
 
 // Comment create
-router.post("/", isLoggedIn, function(req, res) {
+router.post("/", middleware.isLoggedIn, function(req, res) {
 	req.body.comment.content = req.sanitize(req.body.comment.content);
 	// Find account by Id
 	Account.findById(req.params.id, function(err, account) {
@@ -42,13 +43,5 @@ router.post("/", isLoggedIn, function(req, res) {
 		}
 	});
 });
-
-// middleware
-function isLoggedIn(req, res, next) {
-	if(req.isAuthenticated()) {
-		return next();
-	}
-	res.redirect("/login");
-}
 
 module.exports = router;
