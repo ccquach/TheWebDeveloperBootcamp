@@ -5,7 +5,7 @@ var accountSchema = new mongoose.Schema({
 	firstName: String,
 	lastName: String,
 	currentBalance: Number,
-	created: { type: Date, default: Date.now },
+	createdAt: { type: Date, default: Date.now },
 	author: {
 		id: {
 			type: mongoose.Schema.Types.ObjectId,

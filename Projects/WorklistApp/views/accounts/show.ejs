@@ -18,7 +18,7 @@
 		<!-- ACCOUNT SETTINGS -->
 		<div class="ui secondary menu">
 			<div class="right menu">
-				<span class="right floated item">Added by <%= account.author.username %></span>
+				<span class="right floated item">Added by <%= account.author.username %> <%= moment(account.createdAt).fromNow() %></span>
 				<% if(currentUser && (account.author.id.equals(currentUser._id) || currentUser.username === "admin")) { %>
 					<div class="item">
 						<a data-tooltip="Edit" data-position="top center" href="/accounts/<%= account._id %>/edit">
@@ -74,7 +74,7 @@
 								<div class="content">
 									<span class="author"><%= comment.author.username %></span>
 									<div class="metadata">
-										<span class="date"><%= moment(comment.created).format("M/D/YYYY") %></span>
+										<span class="date"><%= moment(comment.createdAt).fromNow() %></span>
 									</div>
 									<div class="text">
 										<p><%= comment.content %></p>
