@@ -1,0 +1,13 @@
+<% include ../partials/header %>
+
+<div class="ui main text container segment">
+	<div class="ui dividing header">Edit Comment</div>
+	<form class="ui form" action="/accounts/<%= account_id %>/comments/<%= comment._id %>?_method=PUT" method="POST">
+		<div class="field">
+			<textarea autofocus="true" name="comment[content]" required><%= comment.content %></textarea>
+		</div>
+		<input class="ui button" type="submit">
+	</form>
+</div>
+
+<% include ../partials/footer %>

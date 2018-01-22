@@ -124,7 +124,7 @@ button i.icon {
 /* ======================== */
 /* Account delete icon 		*/
 /* ======================== */
-#delete {
+.delete {
 	background: none;
 	border: none;
 	color: inherit;

@@ -27,7 +27,7 @@
 					</div>
 					<div class="item">
 						<form action="/accounts/<%= account._id %>?_method=DELETE" method="POST">
-							<button id="delete" data-tooltip="Delete" data-position="top center">
+							<button class="delete" data-tooltip="Delete" data-position="top center">
 								<i class="trash link icon"></i>
 							</button>
 						</form>
@@ -79,6 +79,16 @@
 									<div class="text">
 										<p><%= comment.content %></p>
 									</div>
+									<% if(currentUser && currentUser.username === "admin") { %>
+										<div class="actions">
+											<a href="/accounts/<%= account._id %>/comments/<%= comment._id %>/edit">Edit</a>
+											<a>
+												<form action="/accounts/<%= account._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+													<input class="delete" type="submit" value="Delete">
+												</form>
+											</a>
+										</div>
+									<% } %>
 								</div>
 							</div>
 						<% }) %>
