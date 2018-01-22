@@ -81,13 +81,28 @@ router.put("/:comment_id", isAdmin, function(req, res) {
 
 // Comment destroy
 router.delete("/:comment_id", isAdmin, function(req, res) {
-	Comment.findByIdAndRemove(req.params.comment_id, function(err) {
+	// find account
+	Account.findByIdAndUpdate(req.params.id, {
+		// remove comment from comments array
+		$pull: {
+			comments: req.params.comment_id
+		}
+	}, function(err) {
 		if(err) {
-			req.flash("error", "Failed to delete comment.");
-			res.back();
-		} else {
-			req.flash("success", "Successfully deleted comment.");
+			console.log(err);
+			req.flash("error", err.message);
 			res.redirect("/accounts/" + req.params.id);
+		} else {
+			// delete comment in db
+			Comment.findByIdAndRemove(req.params.comment_id, function(err) {
+				if(err) {
+					req.flash("error", "Failed to delete comment.");
+					res.back();
+				} else {
+					req.flash("success", "Successfully deleted comment.");
+					res.redirect("/accounts/" + req.params.id);
+				}
+			});
 		}
 	});
 });
