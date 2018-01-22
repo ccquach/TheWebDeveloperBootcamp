@@ -7,7 +7,8 @@ var middleware = require("../middleware");
 // Comments new
 router.get("/new", middleware.isLoggedIn, function(req, res) {
 	Account.findById(req.params.id, function(err, account) {
-		if(err) {
+		if(err || !account) {
+			req.flash("error", "Unable to find account.")
 			res.back();
 		} else {
 			res.render("comments/new", { account: account });
@@ -21,13 +22,13 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
 	// Find account by Id
 	Account.findById(req.params.id, function(err, account) {
 		if(err) {
-			console.log(err);
+			res.back();
 		} else {
 			// Create new comment
 			Comment.create(req.body.comment, function(err, comment) {
 				if(err) {
 					req.flash("error", "Failed to add new comment.");
-					console.log(err);
+					res.back();
 				} else {
 					// Add username and id to comment
 					comment.author.id = req.user._id;

@@ -28,7 +28,7 @@ middlewareObj.checkAccountOwnership = function(req, res, next) {
 	if(req.isAuthenticated()) {
 		Account.findById(req.params.id, function(err, foundAccount) {
 			if(err || !foundAccount) {
-				req.flash("error", "Unable to find the account. Please note the account number and contact support.");
+				req.flash("error", "Unable to find account. Please note the account number and contact support.");
 				res.back();
 			} else {
 				if(foundAccount.author.id.equals(req.user._id)) {
