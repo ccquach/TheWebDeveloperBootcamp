@@ -49,7 +49,7 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
 // Comment edit
 router.get("/:comment_id/edit", middleware.isAdmin, function(req, res) {
 	Account.findById(req.params.id, function(err, foundAccount) {
-		if(err | !foundAccount) {
+		if(err || !foundAccount) {
 			req.flash("error", "Account not found.");
 			return res.back();
 		}
