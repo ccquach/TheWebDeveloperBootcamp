@@ -31,7 +31,7 @@ middlewareObj.checkAccountOwnership = function(req, res, next) {
 				req.flash("error", "Unable to find account. Please note the account number and contact support.");
 				res.back();
 			} else {
-				if(foundAccount.author.id.equals(req.user._id)) {
+				if(foundAccount.author.id.equals(req.user._id) || req.user.username === "admin") {
 					next();
 				} else {
 					req.flash("error", "You are not authorized to complete this action.");

@@ -19,7 +19,7 @@
 		<div class="ui secondary menu">
 			<div class="right menu">
 				<span class="right floated item">Added by <%= account.author.username %></span>
-				<% if(currentUser && account.author.id.equals(currentUser._id)) { %>
+				<% if(currentUser && (account.author.id.equals(currentUser._id) || currentUser.username === "admin")) { %>
 					<div class="item">
 						<a data-tooltip="Edit" data-position="top center" href="/accounts/<%= account._id %>/edit">
 							<i class="edit link icon"></i>
