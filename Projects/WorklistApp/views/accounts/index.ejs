@@ -5,7 +5,7 @@
 	<h2 class="ui center aligned icon header">
 		<i class="circular browser icon"></i>
 	</h2>
-
+	
 	<!-- SECONDARY MENU -->
 	<div class="ui secondary menu">
 		<div class="right menu">
@@ -45,7 +45,7 @@
 					<td><a href="/accounts/<%= account._id %>"><%= account.number %></a></td>
 					<td><%= account.lastName %>, <%= account.firstName %></td>
 					<td>$<%= account.currentBalance.toFixed(2) %></td>
-					<td><%= moment(account.created).format("M/D/YYYY") %></td>
+					<td><%= moment(account.createdAt).format("M/D/YYYY") %></td>
 				</tr>
 			<% }) %>
 		</tbody>

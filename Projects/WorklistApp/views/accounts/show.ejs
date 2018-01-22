@@ -19,7 +19,7 @@
 		<div class="ui secondary menu">
 			<div class="right menu">
 				<span class="right floated item">Added by <%= account.author.username %> <%= moment(account.createdAt).fromNow() %></span>
-				<% if(currentUser && (account.author.id.equals(currentUser._id) || currentUser.username === "admin")) { %>
+				<% if(currentUser && (account.author.id.equals(currentUser._id) || currentUser.isAdmin)) { %>
 					<div class="item">
 						<a data-tooltip="Edit" data-position="top center" href="/accounts/<%= account._id %>/edit">
 							<i class="edit link icon"></i>
@@ -79,7 +79,7 @@
 									<div class="text">
 										<p><%= comment.content %></p>
 									</div>
-									<% if(currentUser && currentUser.username === "admin") { %>
+									<% if(currentUser && currentUser.isAdmin) { %>
 										<div class="actions">
 											<a href="/accounts/<%= account._id %>/comments/<%= comment._id %>/edit">Edit</a>
 											<a>

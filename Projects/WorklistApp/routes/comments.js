@@ -3,9 +3,10 @@ var router = express.Router({ mergeParams: true });
 var Account = require("../models/account");
 var Comment = require("../models/comment");
 var middleware = require("../middleware");
+const { isLoggedIn, isAdmin } = middleware;
 
 // Comments new
-router.get("/new", middleware.isLoggedIn, function(req, res) {
+router.get("/new", isLoggedIn, function(req, res) {
 	Account.findById(req.params.id, function(err, account) {
 		if(err || !account) {
 			req.flash("error", "Unable to find account.")
@@ -17,7 +18,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res) {
 });
 
 // Comment create
-router.post("/", middleware.isLoggedIn, function(req, res) {
+router.post("/", isLoggedIn, function(req, res) {
 	req.body.comment.content = req.sanitize(req.body.comment.content);
 	// Find account by Id
 	Account.findById(req.params.id, function(err, account) {
@@ -48,7 +49,7 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
 });
 
 // Comment edit
-router.get("/:comment_id/edit", middleware.isAdmin, function(req, res) {
+router.get("/:comment_id/edit", isAdmin, function(req, res) {
 	Account.findById(req.params.id, function(err, foundAccount) {
 		if(err || !foundAccount) {
 			req.flash("error", "Account not found.");
@@ -65,7 +66,7 @@ router.get("/:comment_id/edit", middleware.isAdmin, function(req, res) {
 });
 
 // Comment update
-router.put("/:comment_id", middleware.isAdmin, function(req, res) {
+router.put("/:comment_id", isAdmin, function(req, res) {
 	req.body.comment.content = req.sanitize(req.body.comment.content);
 	Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, updatedComment) {
 		if(err) {
@@ -79,7 +80,7 @@ router.put("/:comment_id", middleware.isAdmin, function(req, res) {
 });
 
 // Comment destroy
-router.delete("/:comment_id", middleware.isAdmin, function(req, res) {
+router.delete("/:comment_id", isAdmin, function(req, res) {
 	Comment.findByIdAndRemove(req.params.comment_id, function(err) {
 		if(err) {
 			req.flash("error", "Failed to delete comment.");

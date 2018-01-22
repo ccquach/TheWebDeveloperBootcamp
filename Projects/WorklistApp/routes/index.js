@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require("passport");
 var User = require("../models/user");
 var middleware = require("../middleware");
+const { isAdmin } = middleware;
 
 // Root route
 router.get("/", function(req, res) {
@@ -13,13 +14,16 @@ router.get("/", function(req, res) {
 // AUTH ROUTES
 // ============================
 // show registration form
-router.get("/register", middleware.isAdmin, function(req, res) {
+router.get("/register", isAdmin, function(req, res) {
 	res.render("register");
 });
 
 // handle sign up logic
-router.post("/register", middleware.isAdmin, function(req, res) {
+router.post("/register", isAdmin, function(req, res) {
 	var newUser = new User({ username: req.body.username });
+	if(req.body.adminCode === "pass1") {
+		newUser.isAdmin = true;
+	}
 	User.register(newUser, req.body.password, function(err, user) {
 		if(err) {
 			req.flash("error", err.message);
