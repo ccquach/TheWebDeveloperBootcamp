@@ -7,7 +7,7 @@ const { isAdmin } = middleware;
 
 // Root route
 router.get("/", function(req, res) {
-	res.render("landing", { title: "landing" });
+	res.render("landing");
 });
 
 // ============================

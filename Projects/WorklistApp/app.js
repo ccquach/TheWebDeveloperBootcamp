@@ -50,8 +50,7 @@ app.use(function(req, res, next) {
 	res.locals = {
 		currentUser: req.user,
 		success: req.flash("success"),
-		error: req.flash("error"),
-		title: undefined
+		error: req.flash("error")
 	};
 	next();
 });
