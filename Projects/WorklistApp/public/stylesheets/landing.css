@@ -26,10 +26,10 @@ body {
 				 0px 18px 23px rgba(0,0,0,0.1);
 
 	/* slideshow */
-	text-align: center;
-	padding-top: 40vh;
 	z-index: 1;
 	position: relative;
+	text-align: center;
+	padding-top: 40vh;
 
 	/* credit footer */
 	margin: 0 auto;
@@ -44,11 +44,12 @@ body {
 
 #landing-header hr {
 	width: 400px;
+	margin: 14px auto;
 	border-top: 1px solid #F8F8F8;
 	border-bottom: 1px solid rgba(0,0,0,0.2);
 }
 
-#landing-header div.credit {
+.footer {
 	bottom: 0;
 	left: 0;
 	right: 0;
@@ -56,6 +57,7 @@ body {
 	position: absolute;
 	padding: 1rem;
 	color: rgba(255, 255, 255, 0.3);
+	z-index: 0;
 }
 
 /* Slideshow */
@@ -78,7 +80,7 @@ body {
 	top: 0;
 	left: 0;
 	background-size: cover;
-	background-position: center;
+	background-position: 50% 50%;
 	background-repeat: no-repeat;
 	opacity: 0;
 	z-index: 0;
@@ -86,22 +88,22 @@ body {
 }
 
 .slideshow li:nth-child(1) { 
-	background: url("../images/landing1.jpg"); 
+	background-image: url("../images/landing1.jpg"); 
 }
 .slideshow li:nth-child(2) { 
-	background: url("../images/landing2.jpg");
-	animation-delay: 10s; 
+	background-image: url("../images/landing2.jpg");
+	animation-delay: 10s;  
 }
 .slideshow li:nth-child(3) { 
-	background: url("../images/landing3.jpg");
+	background-image: url("../images/landing3.jpg");
 	animation-delay: 20s; 
 }
 .slideshow li:nth-child(4) { 
-	background: url("../images/landing4.jpg");
+	background-image: url("../images/landing4.jpg");
 	animation-delay: 30s; 
 }
 .slideshow li:nth-child(5) { 
-	background: url("../images/landing5.jpg");
+	background-image: url("../images/landing5.jpg");
 	animation-delay: 40s; 
 }
 
