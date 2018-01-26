@@ -27,32 +27,127 @@
 				<% } %>
 			</div>
 		</div>
+		<!-- COMMENT SECTION START -->
 		<div class="well">
+			<!-- comment button that toggles collapse -->
 			<div class="text-right">
-				<a class="btn btn-success" href="/campgrounds/<%= campground._id %>/comments/new">
+				<a class="btn btn-success pull-right" 
+				   role="button" 
+				   data-toggle="collapse" 
+				   href="#collapseComment" 
+				   aria-expanded="false" 
+				   aria-controls="collapseComment">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 					Add New Comment
 				</a>
 			</div>
+
+			<!-- comment section title -->
+			<h4>
+				<strong>
+					Comments
+					<span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
+				</strong>
+			</h4>
+
+			<!-- collapse add a comment form START -->
+			<div class="collapse" id="collapseComment">
+				<div class="well" style="border-left: 5px solid #00C851;">
+					<!-- if user not logged in, direct to login page -->
+					<% if(!currentUser) { %>
+						<h5>You need to log in before you can comment. <a href="/login">Click here</a> to go to the login page.</h5>
+					<% } %>
+					<!-- if user is logged in, show the new comment form -->
+					<% if(currentUser) { %>
+						<h4>Write your comment <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></h4>
+						<form id="add-comment-form" action="/campgrounds/<%= campground._id %>/comments" method="POST">
+							<div class="form-group">
+								<input class="form-control" type="text" disabled value="<%= currentUser.username %>">
+							</div>
+							<div class="form-group">
+								<textarea class="form-control" name="comment[text]" placeholder="Write your comment..." form="add-comment-form" rows="5" cols="70"></textarea>
+							</div>
+							<div class="form-group">
+								<button class="btn btn-success btn-sm">Comment <span class="glyphicon glyphicon-comment" aria-hidden="true"></span></button>
+							</div>
+						</form>
+					<% } %>
+				</div>
+			</div>
+			<!-- collapse add a comment form END -->
+
 			<hr>
+
+			<!-- check if there are comments  -->
+			<% if(campground.comments.length === 0) { %>
+				<em style="color: grey;">No comments yet.</em>
+			<% } %>
+
+			<!-- display comments -->
 			<% campground.comments.forEach(function(comment){ %>
 				<div class="row">
 					<div class="col-md-12">
-						<strong><%= comment.author.username %></strong>
+						<!-- author -->
+						<strong>
+							<% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
+								<!-- display yellow user icon for current user's comments -->
+								<span style="color: orange;" class="glyphicon glyphicon-user" aria-hidden="true"></span>
+							<% } else { %>
+								<!-- otherwise, display black user icon -->
+								<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+							<% } %>
+							<!-- username -->
+							<%= comment.author.username %>
+						</strong>
+
+						<!-- created at -->
 						<span class="pull-right">10 days ago</span>
+
+						<!-- comment text -->
 						<p><%= comment.text %></p>
+
+						<!-- display edit/delete buttons for current user's comments -->
 						<% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
+							<!-- edit -->
 							<a class="btn btn-xs btn-warning" 
-							   href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit">
+							   role="button"
+							   data-toggle="collapse"
+							   href="#collapseEdit<%= comment._id %>"
+							   aria-expanded="false"
+							   aria-controls="collapse<%= comment._id %>">
 							   Edit
 							</a>
+
+							<!-- delete -->
 							<form class="delete-form" action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
 								<input class="btn btn-xs btn-danger" type="submit" value="Delete">
 							</form>
+
+							<!-- edit form -->
+							<div class="collapse" id="collapseEdit<%= comment._id %>">
+								<div class="well" style="border-left: 5px solid #ffbb33; margin-top: 15px">
+									<h4>Edit your comment <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></h4>
+									<form id="edit-comment-form"
+										  action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=PUT"
+										  method="POST">
+										<div class="form-group">
+											<input class="form-control" type="text" disabled value="<%= currentUser.username %>">
+										</div>
+										<div class="form-group">
+											<textarea class="form-control" name="comment[text]" placeholder="Your comment text..." form="edit-comment-form" rows="5" cols="70"><%= comment.text %></textarea>
+										</div>
+										<div class="form-group">
+											<button class="btn btn-warning btn-sm">Edit Comment <span class="glyphicon glyphicon-comment" aria-hidden="true"></span></button>
+										</div>
+									</form>
+								</div>
+							</div>
 						<% } %>
 					</div>
 				</div>
 			<% }) %>
 		</div>
+		<!-- COMMENT SECTION END -->
 	</div>
 </div>
 
