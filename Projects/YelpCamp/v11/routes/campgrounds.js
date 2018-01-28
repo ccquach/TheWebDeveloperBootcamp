@@ -5,13 +5,21 @@ var middleware = require("../middleware");
 
 //INDEX - show all campgrounds
 router.get("/", function(req, res) {
-	//get all campgrounds from db
-	Campground.find({}, function(err, allCampgrounds) {
-		if(err) {
-			console.log(err);
-		} else {
-			res.render("campgrounds/index", { campgrounds: allCampgrounds, page: "campgrounds" });
-		}
+	var perPage = 8;
+	var pageQuery = parseInt(req.query.page);
+	var pageNumber = pageQuery ? pageQuery : 1;
+	Campground.find({}).skip((perPage * pageNumber) - perPage).limit(perPage).exec(function(err, allCampgrounds) {
+		Campground.count().exec(function(err, count) {
+			if(err) {
+				console.log(err);
+			} else {
+				res.render("campgrounds/index", {
+					campgrounds: allCampgrounds,
+					current: pageNumber,
+					pages: Math.ceil(count / perPage)
+				});
+			}
+		});
 	});
 });
 
