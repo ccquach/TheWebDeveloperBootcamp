@@ -8,11 +8,19 @@ router.get("/", function(req, res) {
 	var perPage = 8;
 	var pageQuery = parseInt(req.query.page);
 	var pageNumber = pageQuery ? pageQuery : 1;
-	Campground.find({}).skip((perPage * pageNumber) - perPage).limit(perPage).exec(function(err, allCampgrounds) {
+
+	if(req.query.search) {
+		const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+		var findObj = { name: regex };
+	} else {
+		var findObj = {};
+	}
+
+	Campground.find(findObj).skip((perPage * pageNumber) - perPage).limit(perPage).exec(function(err, allCampgrounds) {
 		if(err) {
 			console.log(err);
 		} else {
-			Campground.count().exec(function(err, count) {
+			Campground.find(findObj).count().exec(function(err, count) {
 				if(err) {
 					console.log(err);
 				} else {
@@ -102,6 +110,10 @@ router.delete("/:id", middleware.checkCampgroundOwnership, function(req, res) {
 			res.redirect("/campgrounds");
 		}
 	});
-});
+})
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 
 module.exports = router
