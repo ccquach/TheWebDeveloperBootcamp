@@ -10,7 +10,7 @@ middlewareObj.checkCampgroundOwnership = function(req, res, next) {
 			res.redirect("back");
 		} else {
 			// does user own the campground?
-			if(foundCampground.author.id.equals(req.user._id)) {
+			if(foundCampground.author.id.equals(req.user._id) || req.user.isAdmin) {
 				next();
 			// otherwise, redirect
 			} else {
@@ -19,7 +19,7 @@ middlewareObj.checkCampgroundOwnership = function(req, res, next) {
 			}
 		}
 	});
-}
+};
 
 middlewareObj.checkCommentOwnership = function(req, res, next) {
 	Comment.findById(req.params.comment_id, function(err, foundComment) {
@@ -28,7 +28,7 @@ middlewareObj.checkCommentOwnership = function(req, res, next) {
 			res.redirect("back");
 		} else {
 			// does user own the comment?
-			if(foundComment.author.id.equals(req.user._id)) {
+			if(foundComment.author.id.equals(req.user._id) || req.user.isAdmin) {
 				next();
 			// otherwise, redirect
 			} else {
@@ -37,7 +37,7 @@ middlewareObj.checkCommentOwnership = function(req, res, next) {
 			}
 		}
 	});
-}
+};
 	
 middlewareObj.isLoggedIn = function(req, res, next) {
 	if(req.isAuthenticated()){
@@ -45,6 +45,6 @@ middlewareObj.isLoggedIn = function(req, res, next) {
 	}
 	req.flash("error", "Please login first!");
 	res.redirect("/login");
-}
+};
 
 module.exports = middlewareObj;

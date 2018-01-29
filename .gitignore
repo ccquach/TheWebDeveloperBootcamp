@@ -1,4 +1,5 @@
 *.bat
+*.env
 node_modules/
 lib/
 img/
