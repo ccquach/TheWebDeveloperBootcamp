@@ -3,9 +3,10 @@ var router = express.Router({ mergeParams: true });
 var Campground = require("../models/campground");
 var Comment = require("../models/comment");
 var middleware = require("../middleware");
+var { isLoggedIn, checkCommentOwnership } = middleware;
 
 // new
-router.get("/new", middleware.isLoggedIn, function(req, res) {
+router.get("/new", isLoggedIn, function(req, res) {
 	Campground.findById(req.params.id, function(err, campground) {
 		if(err) {
 			console.log(err);
@@ -16,7 +17,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res) {
 });
 
 // create
-router.post("/", middleware.isLoggedIn, function(req, res) {
+router.post("/", isLoggedIn, function(req, res) {
 	// Lookup campground using Id
 	Campground.findById(req.params.id, function(err, campground) {
 		if(err) {
@@ -48,7 +49,7 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
 });
 
 // edit
-router.get("/:comment_id/edit", middleware.checkCommentOwnership, function(req, res) {
+router.get("/:comment_id/edit", isLoggedIn, checkCommentOwnership, function(req, res) {
 	Campground.findById(req.params.id, function(err, foundCampground) {
 		if(err || !foundCampground) {
 			req.flash("error", "Campground not found.");
@@ -65,7 +66,7 @@ router.get("/:comment_id/edit", middleware.checkCommentOwnership, function(req, 
 });
 
 // update
-router.put("/:comment_id", middleware.checkCommentOwnership, function(req, res) {
+router.put("/:comment_id", isLoggedIn, checkCommentOwnership, function(req, res) {
 	Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, updatedComment) {
 		if(err) {
 			res.redirect("back");
@@ -77,7 +78,7 @@ router.put("/:comment_id", middleware.checkCommentOwnership, function(req, res) 
 });
 
 // destroy
-router.delete("/:comment_id", middleware.checkCommentOwnership, function(req, res) {
+router.delete("/:comment_id", isLoggedIn, checkCommentOwnership, function(req, res) {
 	Comment.findByIdAndRemove(req.params.comment_id, function(err) {
 		if(err) {
 			req.flash("error", "Failed to delete comment.");
