@@ -9,7 +9,8 @@ var { isLoggedIn, checkCommentOwnership } = middleware;
 router.get("/new", isLoggedIn, function(req, res) {
 	Campground.findById(req.params.id, function(err, campground) {
 		if(err) {
-			console.log(err);
+			req.flash("error", "Campground not found.");
+			res.redirect("back");
 		} else {
 			res.render("comments/new", { campground: campground });
 		}
@@ -21,13 +22,14 @@ router.post("/", isLoggedIn, function(req, res) {
 	// Lookup campground using Id
 	Campground.findById(req.params.id, function(err, campground) {
 		if(err) {
-			console.log(err);
+			req.flash("error", "Campground not found.");
 			res.redirect("/campgrounds");
 		} else {
 			// Create new comment
 			Comment.create(req.body.comment, function(err, comment) {
 				if(err) {
 					req.flash("error", "Something went wrong when trying to add a new comment.");
+					res.redirect("back");
 					console.log(err);
 				} else {
 					// Add username and id to comment
@@ -40,7 +42,7 @@ router.post("/", isLoggedIn, function(req, res) {
 					campground.save();
 					console.log(comment);
 					// Redirect to campground show page
-					req.flash("success", "Successfully added comment.");
+					req.flash("success", "Successfully added comment!");
 					res.redirect("/campgrounds/" + req.params.id);
 				}
 			});
@@ -57,6 +59,7 @@ router.get("/:comment_id/edit", isLoggedIn, checkCommentOwnership, function(req,
 		}
 		Comment.findById(req.params.comment_id, function(err, foundComment) {
 			if(err) {
+				req.flash("error", "Comment not found.");
 				res.redirect("back");
 			} else {
 				res.render("comments/edit", { campground_id: req.params.id, comment: foundComment });
@@ -69,9 +72,11 @@ router.get("/:comment_id/edit", isLoggedIn, checkCommentOwnership, function(req,
 router.put("/:comment_id", isLoggedIn, checkCommentOwnership, function(req, res) {
 	Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, updatedComment) {
 		if(err) {
+			req.flash("error", "Comment not found.");
 			res.redirect("back");
 		} else {
 			console.log(updatedComment);
+			req.flash("success", "Comment updated!");
 			res.redirect("/campgrounds/" + req.params.id);
 		}
 	});

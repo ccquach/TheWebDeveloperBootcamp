@@ -19,11 +19,13 @@ router.get("/", function(req, res) {
 
 	Campground.find(findObj).skip((perPage * pageNumber) - perPage).limit(perPage).exec(function(err, allCampgrounds) {
 		if(err) {
-			console.log(err);
+			req.flash("error", "Campgrounds not found.");
+			res.redirect("back");
 		} else {
 			Campground.find(findObj).count().exec(function(err, count) {
 				if(err) {
-					console.log(err);
+					req.flash("error", "Campgrounds not found.");
+					res.redirect("back");
 				} else {
 					res.render("campgrounds/index", {
 						campgrounds: allCampgrounds,
@@ -58,10 +60,12 @@ router.post("/", isLoggedIn, function(req, res) {
 	//create a new campground and save to db
 	Campground.create(newCampgound, function(err, newlyCreated) {
 		if(err) {
-			console.log(err);
+			req.flash("error", "Failed to create new campground.");
+			res.redirect("back");
 		} else {
 			//redirect back to campgrounds page
 			console.log(newlyCreated);
+			req.flash("success", "New campground added!");
 			res.redirect("/campgrounds");
 		}
 	});
@@ -97,8 +101,10 @@ router.get("/:id/edit", isLoggedIn, checkCampgroundOwnership, function(req, res)
 router.put("/:id", isLoggedIn, checkCampgroundOwnership, function(req, res) {
 	Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedCampground) {
 		if(err) {
+			req.flash("error", "Failed to update campground.");
 			res.redirect("/campgrounds");
 		} else {
+			req.flash("success", "Campground updated!");
 			res.redirect("/campgrounds/" + req.params.id);
 		}
 	});
@@ -108,8 +114,10 @@ router.put("/:id", isLoggedIn, checkCampgroundOwnership, function(req, res) {
 router.delete("/:id", isLoggedIn, checkCampgroundOwnership, function(req, res) {
 	Campground.findByIdAndRemove(req.params.id, function(err) {
 		if(err) {
+			req.flash("error", "Failed to delete campground.");
 			res.redirect("/campgrounds");
 		} else {
+			req.flash("success", "Campground deleted!");
 			res.redirect("/campgrounds");
 		}
 	});
