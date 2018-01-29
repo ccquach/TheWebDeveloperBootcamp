@@ -41,6 +41,7 @@ router.get("/", function(req, res) {
 router.post("/", isLoggedIn, function(req, res) {
 	//get data from form and add to campgrounds collection
 	var name 	= req.body.name,
+		price	= req.body.price,
 		image 	= req.body.image,
 		desc 	= req.body.description;
 	var author = {
@@ -49,6 +50,7 @@ router.post("/", isLoggedIn, function(req, res) {
 	};
 	var newCampgound = {
 		name: name,
+		price: price,
 		image: image,
 		description: desc,
 		author: author
